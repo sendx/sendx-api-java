@@ -1,4 +1,4 @@
-# SendX API Clent Java
+# SendX API Client Java
 
 ## Requirements
 
