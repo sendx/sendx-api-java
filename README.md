@@ -1,4 +1,4 @@
-# swagger-java-client
+# SendX API Clent Java
 
 ## Requirements
 
