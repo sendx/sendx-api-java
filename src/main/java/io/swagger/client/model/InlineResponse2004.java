@@ -35,7 +35,7 @@ import io.swagger.client.model.Contact;
 /**
  * InlineResponse2004
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-09-26T03:51:53.133Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-09-26T05:59:43.206Z")
 public class InlineResponse2004   {
   @SerializedName("status")
   private String status = null;
