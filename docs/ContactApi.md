@@ -1,15 +1,112 @@
 # ContactApi
 
-All URIs are relative to *http://127.0.0.1:8080/api/v1*
+All URIs are relative to *http://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**contactBulkPost**](ContactApi.md#contactBulkPost) | **POST** /contact/bulk | Add a bulk of contacts in a request
+[**contactContactIdCustomfieldPost**](ContactApi.md#contactContactIdCustomfieldPost) | **POST** /contact/{contactId}/customfield | Add Customfield data for a contact
 [**contactContactIdDelete**](ContactApi.md#contactContactIdDelete) | **DELETE** /contact/{contactId} | Deletes a contact
 [**contactContactIdGet**](ContactApi.md#contactContactIdGet) | **GET** /contact/{contactId} | Find contact by ID
 [**contactContactIdPut**](ContactApi.md#contactContactIdPut) | **PUT** /contact/{contactId} | Update a contact by ID
 [**contactGet**](ContactApi.md#contactGet) | **GET** /contact | Get information about all contacts
 [**contactPost**](ContactApi.md#contactPost) | **POST** /contact | Add a new contact
 
+
+<a name="contactBulkPost"></a>
+# **contactBulkPost**
+> contactBulkPost(apiKey, body)
+
+Add a bulk of contacts in a request
+
+
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiException;
+//import io.swagger.client.api.ContactApi;
+
+
+ContactApi apiInstance = new ContactApi();
+String apiKey = "apiKey_example"; // String | 
+BulkContact body = new BulkContact(); // BulkContact | All contacts which need to be added
+try {
+    apiInstance.contactBulkPost(apiKey, body);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ContactApi#contactBulkPost");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **apiKey** | **String**|  |
+ **body** | [**BulkContact**](BulkContact.md)| All contacts which need to be added |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="contactContactIdCustomfieldPost"></a>
+# **contactContactIdCustomfieldPost**
+> InlineResponse2005 contactContactIdCustomfieldPost(apiKey, contactId, body)
+
+Add Customfield data for a contact
+
+
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiException;
+//import io.swagger.client.api.ContactApi;
+
+
+ContactApi apiInstance = new ContactApi();
+String apiKey = "apiKey_example"; // String | 
+Long contactId = 789L; // Long | ID of contact that needs to be fetched
+ContactCustomfield body = new ContactCustomfield(); // ContactCustomfield | Contact object that needs to be added
+try {
+    InlineResponse2005 result = apiInstance.contactContactIdCustomfieldPost(apiKey, contactId, body);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ContactApi#contactContactIdCustomfieldPost");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **apiKey** | **String**|  |
+ **contactId** | **Long**| ID of contact that needs to be fetched |
+ **body** | [**ContactCustomfield**](ContactCustomfield.md)| Contact object that needs to be added |
+
+### Return type
+
+[**InlineResponse2005**](InlineResponse2005.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="contactContactIdDelete"></a>
 # **contactContactIdDelete**

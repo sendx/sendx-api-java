@@ -1,4 +1,4 @@
-# SendX API Client Java
+# swagger-java-client
 
 ## Requirements
 
@@ -86,7 +86,7 @@ public class CampaignApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://127.0.0.1:8080/api/v1*
+All URIs are relative to *http://localhost/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -95,25 +95,25 @@ Class | Method | HTTP request | Description
 *CampaignApi* | [**campaignCampaignIdPut**](docs/CampaignApi.md#campaignCampaignIdPut) | **PUT** /campaign/{campaignId} | Update a campaign by ID
 *CampaignApi* | [**campaignGet**](docs/CampaignApi.md#campaignGet) | **GET** /campaign | Get information about all campaigns
 *CampaignApi* | [**campaignPost**](docs/CampaignApi.md#campaignPost) | **POST** /campaign | Add a new campaign
+*ContactApi* | [**contactBulkPost**](docs/ContactApi.md#contactBulkPost) | **POST** /contact/bulk | Add a bulk of contacts in a request
+*ContactApi* | [**contactContactIdCustomfieldPost**](docs/ContactApi.md#contactContactIdCustomfieldPost) | **POST** /contact/{contactId}/customfield | Add Customfield data for a contact
 *ContactApi* | [**contactContactIdDelete**](docs/ContactApi.md#contactContactIdDelete) | **DELETE** /contact/{contactId} | Deletes a contact
 *ContactApi* | [**contactContactIdGet**](docs/ContactApi.md#contactContactIdGet) | **GET** /contact/{contactId} | Find contact by ID
 *ContactApi* | [**contactContactIdPut**](docs/ContactApi.md#contactContactIdPut) | **PUT** /contact/{contactId} | Update a contact by ID
 *ContactApi* | [**contactGet**](docs/ContactApi.md#contactGet) | **GET** /contact | Get information about all contacts
 *ContactApi* | [**contactPost**](docs/ContactApi.md#contactPost) | **POST** /contact | Add a new contact
-*LinkApi* | [**linkGet**](docs/LinkApi.md#linkGet) | **GET** /link | Get information about all links
-*LinkApi* | [**linkLinkIdDelete**](docs/LinkApi.md#linkLinkIdDelete) | **DELETE** /link/{linkId} | Deletes a link
-*LinkApi* | [**linkLinkIdGet**](docs/LinkApi.md#linkLinkIdGet) | **GET** /link/{linkId} | Find link by ID
-*LinkApi* | [**linkLinkIdPut**](docs/LinkApi.md#linkLinkIdPut) | **PUT** /link/{linkId} | Update a link by ID
-*LinkApi* | [**linkPost**](docs/LinkApi.md#linkPost) | **POST** /link | Add a new link
+*CustomfieldApi* | [**customfieldCustomfieldIdGet**](docs/CustomfieldApi.md#customfieldCustomfieldIdGet) | **GET** /customfield/{customfieldId} | Find customfield by ID
+*CustomfieldApi* | [**customfieldGet**](docs/CustomfieldApi.md#customfieldGet) | **GET** /customfield | Get information about all customfield
+*CustomfieldApi* | [**customfieldPost**](docs/CustomfieldApi.md#customfieldPost) | **POST** /customfield | Add a new Customfield
 *ListApi* | [**listGet**](docs/ListApi.md#listGet) | **GET** /list | Get information about all lists
+*ListApi* | [**listListIdContactDelete**](docs/ListApi.md#listListIdContactDelete) | **DELETE** /list/{listId}/contact | Remove a contact from a list
+*ListApi* | [**listListIdContactPost**](docs/ListApi.md#listListIdContactPost) | **POST** /list/{listId}/contact | Add a contact to a list
 *ListApi* | [**listListIdContactsGet**](docs/ListApi.md#listListIdContactsGet) | **GET** /list/{listId}/contacts | Find contacts belonging to a list
 *ListApi* | [**listListIdDelete**](docs/ListApi.md#listListIdDelete) | **DELETE** /list/{listId} | Deletes a list
 *ListApi* | [**listListIdGet**](docs/ListApi.md#listListIdGet) | **GET** /list/{listId} | Find list by ID
 *ListApi* | [**listListIdPut**](docs/ListApi.md#listListIdPut) | **PUT** /list/{listId} | Update a list by ID
 *ListApi* | [**listPost**](docs/ListApi.md#listPost) | **POST** /list | Add a new list
-*SendApi* | [**sendEmailPost**](docs/SendApi.md#sendEmailPost) | **POST** /send/email | Send transactional email to user
-*SubscribeApi* | [**subscribeEncryptedListIdPost**](docs/SubscribeApi.md#subscribeEncryptedListIdPost) | **POST** /subscribe/{encryptedListId} | Subscribe a new user a list
-*SubscribeApi* | [**subscribeEncryptedListIdPut**](docs/SubscribeApi.md#subscribeEncryptedListIdPut) | **PUT** /subscribe/{encryptedListId} | Subscribe an existing user a list
+*SegmentApi* | [**segmentGet**](docs/SegmentApi.md#segmentGet) | **GET** /segment | Get information about all segments
 *TagApi* | [**tagGet**](docs/TagApi.md#tagGet) | **GET** /tag | Get information about all tags
 *TagApi* | [**tagPost**](docs/TagApi.md#tagPost) | **POST** /tag | Add a new tag
 *TagApi* | [**tagTagIdContactDelete**](docs/TagApi.md#tagTagIdContactDelete) | **DELETE** /tag/{tagId}/contact | Remove a contact from a tag
@@ -131,15 +131,19 @@ Class | Method | HTTP request | Description
 *TeamApi* | [**teamTeamIdListsGet**](docs/TeamApi.md#teamTeamIdListsGet) | **GET** /team/{teamId}/lists | Find lists of a team by ID
 *TeamApi* | [**teamTeamIdPut**](docs/TeamApi.md#teamTeamIdPut) | **PUT** /team/{teamId} | Update a team by ID
 *TeamApi* | [**teamTeamIdTagsGet**](docs/TeamApi.md#teamTeamIdTagsGet) | **GET** /team/{teamId}/tags | Find tags of a team by ID
-*UnsubscribeApi* | [**unsubscribeEncryptedListIdPost**](docs/UnsubscribeApi.md#unsubscribeEncryptedListIdPost) | **POST** /unsubscribe/{encryptedListId} | Unsubscribe a user from list based on email id
 
 
 ## Documentation for Models
 
+ - [BulkContact](docs/BulkContact.md)
  - [Campaign](docs/Campaign.md)
  - [CampaignAddUpdate](docs/CampaignAddUpdate.md)
  - [Contact](docs/Contact.md)
  - [ContactAddUpdate](docs/ContactAddUpdate.md)
+ - [ContactAddUpdateCustomFields](docs/ContactAddUpdateCustomFields.md)
+ - [ContactCustomfield](docs/ContactCustomfield.md)
+ - [Customfield](docs/Customfield.md)
+ - [CustomfieldAddUpdate](docs/CustomfieldAddUpdate.md)
  - [DeepListEmailContact](docs/DeepListEmailContact.md)
  - [DeepTeamEmailContact](docs/DeepTeamEmailContact.md)
  - [EContent](docs/EContent.md)
@@ -151,6 +155,9 @@ Class | Method | HTTP request | Description
  - [InlineResponse20011](docs/InlineResponse20011.md)
  - [InlineResponse20012](docs/InlineResponse20012.md)
  - [InlineResponse20013](docs/InlineResponse20013.md)
+ - [InlineResponse20014](docs/InlineResponse20014.md)
+ - [InlineResponse20015](docs/InlineResponse20015.md)
+ - [InlineResponse20016](docs/InlineResponse20016.md)
  - [InlineResponse2002](docs/InlineResponse2002.md)
  - [InlineResponse2003](docs/InlineResponse2003.md)
  - [InlineResponse2004](docs/InlineResponse2004.md)
@@ -162,6 +169,9 @@ Class | Method | HTTP request | Description
  - [Link](docs/Link.md)
  - [LinkAddUpdate](docs/LinkAddUpdate.md)
  - [ListAddUpdate](docs/ListAddUpdate.md)
+ - [ListContact](docs/ListContact.md)
+ - [ListContactId](docs/ListContactId.md)
+ - [Segment](docs/Segment.md)
  - [Tag](docs/Tag.md)
  - [TagAddUpdate](docs/TagAddUpdate.md)
  - [TagContact](docs/TagContact.md)

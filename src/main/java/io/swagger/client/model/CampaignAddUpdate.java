@@ -1,6 +1,6 @@
 /**
  * SendX API
- * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures   that SendX platform is able to satisfy such unforeseen use cases. They may range from building     custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form  required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",      \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status  The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data  The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message  This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
+ * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
  *
  * OpenAPI spec version: v1
  * 
@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * CampaignAddUpdate
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-15T11:32:24.408Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-09-26T03:51:53.133Z")
 public class CampaignAddUpdate   {
   @SerializedName("name")
   private String name = null;
@@ -67,6 +67,12 @@ public class CampaignAddUpdate   {
 
   @SerializedName("list_ids")
   private List<Integer> listIds = new ArrayList<Integer>();
+
+  @SerializedName("tag_ids")
+  private List<Integer> tagIds = new ArrayList<Integer>();
+
+  @SerializedName("segment_ids")
+  private List<Integer> segmentIds = new ArrayList<Integer>();
 
   public CampaignAddUpdate name(String name) {
     this.name = name;
@@ -253,6 +259,52 @@ public class CampaignAddUpdate   {
     this.listIds = listIds;
   }
 
+  public CampaignAddUpdate tagIds(List<Integer> tagIds) {
+    this.tagIds = tagIds;
+    return this;
+  }
+
+  public CampaignAddUpdate addTagIdsItem(Integer tagIdsItem) {
+    this.tagIds.add(tagIdsItem);
+    return this;
+  }
+
+   /**
+   * Get tagIds
+   * @return tagIds
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public List<Integer> getTagIds() {
+    return tagIds;
+  }
+
+  public void setTagIds(List<Integer> tagIds) {
+    this.tagIds = tagIds;
+  }
+
+  public CampaignAddUpdate segmentIds(List<Integer> segmentIds) {
+    this.segmentIds = segmentIds;
+    return this;
+  }
+
+  public CampaignAddUpdate addSegmentIdsItem(Integer segmentIdsItem) {
+    this.segmentIds.add(segmentIdsItem);
+    return this;
+  }
+
+   /**
+   * Get segmentIds
+   * @return segmentIds
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public List<Integer> getSegmentIds() {
+    return segmentIds;
+  }
+
+  public void setSegmentIds(List<Integer> segmentIds) {
+    this.segmentIds = segmentIds;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -272,12 +324,14 @@ public class CampaignAddUpdate   {
         Objects.equals(this.metadata, campaignAddUpdate.metadata) &&
         Objects.equals(this.teamId, campaignAddUpdate.teamId) &&
         Objects.equals(this.providerId, campaignAddUpdate.providerId) &&
-        Objects.equals(this.listIds, campaignAddUpdate.listIds);
+        Objects.equals(this.listIds, campaignAddUpdate.listIds) &&
+        Objects.equals(this.tagIds, campaignAddUpdate.tagIds) &&
+        Objects.equals(this.segmentIds, campaignAddUpdate.segmentIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, status, type, scheduleCondition, timeCondition, timezone, metadata, teamId, providerId, listIds);
+    return Objects.hash(name, status, type, scheduleCondition, timeCondition, timezone, metadata, teamId, providerId, listIds, tagIds, segmentIds);
   }
 
   @Override
@@ -295,6 +349,8 @@ public class CampaignAddUpdate   {
     sb.append("    teamId: ").append(toIndentedString(teamId)).append("\n");
     sb.append("    providerId: ").append(toIndentedString(providerId)).append("\n");
     sb.append("    listIds: ").append(toIndentedString(listIds)).append("\n");
+    sb.append("    tagIds: ").append(toIndentedString(tagIds)).append("\n");
+    sb.append("    segmentIds: ").append(toIndentedString(segmentIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

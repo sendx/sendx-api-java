@@ -1,6 +1,6 @@
 /**
  * SendX API
- * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures   that SendX platform is able to satisfy such unforeseen use cases. They may range from building     custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form  required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",      \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status  The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data  The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message  This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
+ * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
  *
  * OpenAPI spec version: v1
  * 
@@ -26,11 +26,11 @@
 package io.swagger.client.api;
 
 import io.swagger.client.ApiException;
-import io.swagger.client.model.InlineResponse2009;
 import io.swagger.client.model.InlineResponse20010;
 import io.swagger.client.model.TagAddUpdate;
-import io.swagger.client.model.TagContact;
 import io.swagger.client.model.InlineResponse20011;
+import io.swagger.client.model.TagContact;
+import io.swagger.client.model.InlineResponse20012;
 import io.swagger.client.model.DeepTeamEmailContact;
 import io.swagger.client.model.Tag;
 import io.swagger.client.model.InlineResponse2002;
@@ -60,7 +60,7 @@ public class TagApiTest {
     @Test
     public void tagGetTest() throws ApiException {
         String apiKey = null;
-        // InlineResponse2009 response = api.tagGet(apiKey);
+        // InlineResponse20010 response = api.tagGet(apiKey);
 
         // TODO: test validations
     }
@@ -77,7 +77,7 @@ public class TagApiTest {
     public void tagPostTest() throws ApiException {
         String apiKey = null;
         TagAddUpdate body = null;
-        // InlineResponse20010 response = api.tagPost(apiKey, body);
+        // InlineResponse20011 response = api.tagPost(apiKey, body);
 
         // TODO: test validations
     }
@@ -113,7 +113,7 @@ public class TagApiTest {
         String apiKey = null;
         Long tagId = null;
         TagContact body = null;
-        // InlineResponse20011 response = api.tagTagIdContactPost(apiKey, tagId, body);
+        // InlineResponse20012 response = api.tagTagIdContactPost(apiKey, tagId, body);
 
         // TODO: test validations
     }

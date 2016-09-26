@@ -1,6 +1,6 @@
 /**
  * SendX API
- * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures   that SendX platform is able to satisfy such unforeseen use cases. They may range from building     custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form  required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",      \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status  The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data  The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message  This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
+ * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
  *
  * OpenAPI spec version: v1
  * 
@@ -29,12 +29,15 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.client.model.ContactAddUpdateCustomFields;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * ContactAddUpdate
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-15T11:32:24.408Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-09-26T03:51:53.133Z")
 public class ContactAddUpdate   {
   @SerializedName("first_name")
   private String firstName = null;
@@ -60,8 +63,14 @@ public class ContactAddUpdate   {
   @SerializedName("city")
   private String city = null;
 
+  @SerializedName("tags")
+  private List<Integer> tags = new ArrayList<Integer>();
+
+  @SerializedName("lists")
+  private List<Integer> lists = new ArrayList<Integer>();
+
   @SerializedName("custom_fields")
-  private String customFields = null;
+  private ContactAddUpdateCustomFields customFields = null;
 
   @SerializedName("team_id")
   private Integer teamId = null;
@@ -210,7 +219,53 @@ public class ContactAddUpdate   {
     this.city = city;
   }
 
-  public ContactAddUpdate customFields(String customFields) {
+  public ContactAddUpdate tags(List<Integer> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public ContactAddUpdate addTagsItem(Integer tagsItem) {
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+   /**
+   * Get tags
+   * @return tags
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public List<Integer> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<Integer> tags) {
+    this.tags = tags;
+  }
+
+  public ContactAddUpdate lists(List<Integer> lists) {
+    this.lists = lists;
+    return this;
+  }
+
+  public ContactAddUpdate addListsItem(Integer listsItem) {
+    this.lists.add(listsItem);
+    return this;
+  }
+
+   /**
+   * Get lists
+   * @return lists
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public List<Integer> getLists() {
+    return lists;
+  }
+
+  public void setLists(List<Integer> lists) {
+    this.lists = lists;
+  }
+
+  public ContactAddUpdate customFields(ContactAddUpdateCustomFields customFields) {
     this.customFields = customFields;
     return this;
   }
@@ -220,11 +275,11 @@ public class ContactAddUpdate   {
    * @return customFields
   **/
   @ApiModelProperty(example = "null", value = "")
-  public String getCustomFields() {
+  public ContactAddUpdateCustomFields getCustomFields() {
     return customFields;
   }
 
-  public void setCustomFields(String customFields) {
+  public void setCustomFields(ContactAddUpdateCustomFields customFields) {
     this.customFields = customFields;
   }
 
@@ -264,13 +319,15 @@ public class ContactAddUpdate   {
         Objects.equals(this.country, contactAddUpdate.country) &&
         Objects.equals(this.state, contactAddUpdate.state) &&
         Objects.equals(this.city, contactAddUpdate.city) &&
+        Objects.equals(this.tags, contactAddUpdate.tags) &&
+        Objects.equals(this.lists, contactAddUpdate.lists) &&
         Objects.equals(this.customFields, contactAddUpdate.customFields) &&
         Objects.equals(this.teamId, contactAddUpdate.teamId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstName, lastName, email, company, language, country, state, city, customFields, teamId);
+    return Objects.hash(firstName, lastName, email, company, language, country, state, city, tags, lists, customFields, teamId);
   }
 
   @Override
@@ -286,6 +343,8 @@ public class ContactAddUpdate   {
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    lists: ").append(toIndentedString(lists)).append("\n");
     sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
     sb.append("    teamId: ").append(toIndentedString(teamId)).append("\n");
     sb.append("}");

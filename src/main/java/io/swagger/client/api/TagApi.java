@@ -1,6 +1,6 @@
 /**
  * SendX API
- * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures   that SendX platform is able to satisfy such unforeseen use cases. They may range from building     custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form  required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",      \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status  The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data  The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message  This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
+ * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
  *
  * OpenAPI spec version: v1
  * 
@@ -38,11 +38,11 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
-import io.swagger.client.model.InlineResponse2009;
 import io.swagger.client.model.InlineResponse20010;
 import io.swagger.client.model.TagAddUpdate;
-import io.swagger.client.model.TagContact;
 import io.swagger.client.model.InlineResponse20011;
+import io.swagger.client.model.TagContact;
+import io.swagger.client.model.InlineResponse20012;
 import io.swagger.client.model.DeepTeamEmailContact;
 import io.swagger.client.model.Tag;
 import io.swagger.client.model.InlineResponse2002;
@@ -125,11 +125,11 @@ public class TagApi {
      * Get information about all tags
      * 
      * @param apiKey  (required)
-     * @return InlineResponse2009
+     * @return InlineResponse20010
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse2009 tagGet(String apiKey) throws ApiException {
-        ApiResponse<InlineResponse2009> resp = tagGetWithHttpInfo(apiKey);
+    public InlineResponse20010 tagGet(String apiKey) throws ApiException {
+        ApiResponse<InlineResponse20010> resp = tagGetWithHttpInfo(apiKey);
         return resp.getData();
     }
 
@@ -137,12 +137,12 @@ public class TagApi {
      * Get information about all tags
      * 
      * @param apiKey  (required)
-     * @return ApiResponse&lt;InlineResponse2009&gt;
+     * @return ApiResponse&lt;InlineResponse20010&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse2009> tagGetWithHttpInfo(String apiKey) throws ApiException {
+    public ApiResponse<InlineResponse20010> tagGetWithHttpInfo(String apiKey) throws ApiException {
         com.squareup.okhttp.Call call = tagGetCall(apiKey, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse2009>(){}.getType();
+        Type localVarReturnType = new TypeToken<InlineResponse20010>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -154,7 +154,7 @@ public class TagApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call tagGetAsync(String apiKey, final ApiCallback<InlineResponse2009> callback) throws ApiException {
+    public com.squareup.okhttp.Call tagGetAsync(String apiKey, final ApiCallback<InlineResponse20010> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -176,7 +176,7 @@ public class TagApi {
         }
 
         com.squareup.okhttp.Call call = tagGetCall(apiKey, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse2009>(){}.getType();
+        Type localVarReturnType = new TypeToken<InlineResponse20010>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -239,11 +239,11 @@ public class TagApi {
      * 
      * @param apiKey  (required)
      * @param body Tag object that needs to be added (required)
-     * @return InlineResponse20010
+     * @return InlineResponse20011
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse20010 tagPost(String apiKey, TagAddUpdate body) throws ApiException {
-        ApiResponse<InlineResponse20010> resp = tagPostWithHttpInfo(apiKey, body);
+    public InlineResponse20011 tagPost(String apiKey, TagAddUpdate body) throws ApiException {
+        ApiResponse<InlineResponse20011> resp = tagPostWithHttpInfo(apiKey, body);
         return resp.getData();
     }
 
@@ -252,12 +252,12 @@ public class TagApi {
      * 
      * @param apiKey  (required)
      * @param body Tag object that needs to be added (required)
-     * @return ApiResponse&lt;InlineResponse20010&gt;
+     * @return ApiResponse&lt;InlineResponse20011&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse20010> tagPostWithHttpInfo(String apiKey, TagAddUpdate body) throws ApiException {
+    public ApiResponse<InlineResponse20011> tagPostWithHttpInfo(String apiKey, TagAddUpdate body) throws ApiException {
         com.squareup.okhttp.Call call = tagPostCall(apiKey, body, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse20010>(){}.getType();
+        Type localVarReturnType = new TypeToken<InlineResponse20011>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -270,7 +270,7 @@ public class TagApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call tagPostAsync(String apiKey, TagAddUpdate body, final ApiCallback<InlineResponse20010> callback) throws ApiException {
+    public com.squareup.okhttp.Call tagPostAsync(String apiKey, TagAddUpdate body, final ApiCallback<InlineResponse20011> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -292,7 +292,7 @@ public class TagApi {
         }
 
         com.squareup.okhttp.Call call = tagPostCall(apiKey, body, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse20010>(){}.getType();
+        Type localVarReturnType = new TypeToken<InlineResponse20011>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -483,11 +483,11 @@ public class TagApi {
      * @param apiKey  (required)
      * @param tagId ID of tag for which the contact needs to be added (required)
      * @param body Contact email and team id (required)
-     * @return InlineResponse20011
+     * @return InlineResponse20012
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse20011 tagTagIdContactPost(String apiKey, Long tagId, TagContact body) throws ApiException {
-        ApiResponse<InlineResponse20011> resp = tagTagIdContactPostWithHttpInfo(apiKey, tagId, body);
+    public InlineResponse20012 tagTagIdContactPost(String apiKey, Long tagId, TagContact body) throws ApiException {
+        ApiResponse<InlineResponse20012> resp = tagTagIdContactPostWithHttpInfo(apiKey, tagId, body);
         return resp.getData();
     }
 
@@ -497,12 +497,12 @@ public class TagApi {
      * @param apiKey  (required)
      * @param tagId ID of tag for which the contact needs to be added (required)
      * @param body Contact email and team id (required)
-     * @return ApiResponse&lt;InlineResponse20011&gt;
+     * @return ApiResponse&lt;InlineResponse20012&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse20011> tagTagIdContactPostWithHttpInfo(String apiKey, Long tagId, TagContact body) throws ApiException {
+    public ApiResponse<InlineResponse20012> tagTagIdContactPostWithHttpInfo(String apiKey, Long tagId, TagContact body) throws ApiException {
         com.squareup.okhttp.Call call = tagTagIdContactPostCall(apiKey, tagId, body, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse20011>(){}.getType();
+        Type localVarReturnType = new TypeToken<InlineResponse20012>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -516,7 +516,7 @@ public class TagApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call tagTagIdContactPostAsync(String apiKey, Long tagId, TagContact body, final ApiCallback<InlineResponse20011> callback) throws ApiException {
+    public com.squareup.okhttp.Call tagTagIdContactPostAsync(String apiKey, Long tagId, TagContact body, final ApiCallback<InlineResponse20012> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -538,7 +538,7 @@ public class TagApi {
         }
 
         com.squareup.okhttp.Call call = tagTagIdContactPostCall(apiKey, tagId, body, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse20011>(){}.getType();
+        Type localVarReturnType = new TypeToken<InlineResponse20012>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

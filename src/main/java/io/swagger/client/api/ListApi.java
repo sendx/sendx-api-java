@@ -1,6 +1,6 @@
 /**
  * SendX API
- * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures   that SendX platform is able to satisfy such unforeseen use cases. They may range from building     custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form  required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",      \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status  The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data  The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message  This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
+ * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
  *
  * OpenAPI spec version: v1
  * 
@@ -38,11 +38,13 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
-import io.swagger.client.model.InlineResponse2007;
+import io.swagger.client.model.InlineResponse2008;
+import io.swagger.client.model.ListContact;
+import io.swagger.client.model.InlineResponse20015;
 import io.swagger.client.model.DeepListEmailContact;
 import io.swagger.client.model.InlineResponse2002;
 import io.swagger.client.model.ListAddUpdate;
-import io.swagger.client.model.InlineResponse2008;
+import io.swagger.client.model.InlineResponse2009;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -122,11 +124,11 @@ public class ListApi {
      * Get information about all lists
      * 
      * @param apiKey  (required)
-     * @return InlineResponse2007
+     * @return InlineResponse2008
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse2007 listGet(String apiKey) throws ApiException {
-        ApiResponse<InlineResponse2007> resp = listGetWithHttpInfo(apiKey);
+    public InlineResponse2008 listGet(String apiKey) throws ApiException {
+        ApiResponse<InlineResponse2008> resp = listGetWithHttpInfo(apiKey);
         return resp.getData();
     }
 
@@ -134,12 +136,12 @@ public class ListApi {
      * Get information about all lists
      * 
      * @param apiKey  (required)
-     * @return ApiResponse&lt;InlineResponse2007&gt;
+     * @return ApiResponse&lt;InlineResponse2008&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse2007> listGetWithHttpInfo(String apiKey) throws ApiException {
+    public ApiResponse<InlineResponse2008> listGetWithHttpInfo(String apiKey) throws ApiException {
         com.squareup.okhttp.Call call = listGetCall(apiKey, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse2007>(){}.getType();
+        Type localVarReturnType = new TypeToken<InlineResponse2008>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -151,7 +153,7 @@ public class ListApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listGetAsync(String apiKey, final ApiCallback<InlineResponse2007> callback) throws ApiException {
+    public com.squareup.okhttp.Call listGetAsync(String apiKey, final ApiCallback<InlineResponse2008> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -173,7 +175,253 @@ public class ListApi {
         }
 
         com.squareup.okhttp.Call call = listGetCall(apiKey, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse2007>(){}.getType();
+        Type localVarReturnType = new TypeToken<InlineResponse2008>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /* Build call for listListIdContactDelete */
+    private com.squareup.okhttp.Call listListIdContactDeleteCall(String apiKey, Long listId, ListContact body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+        
+        // verify the required parameter 'apiKey' is set
+        if (apiKey == null) {
+            throw new ApiException("Missing the required parameter 'apiKey' when calling listListIdContactDelete(Async)");
+        }
+        
+        // verify the required parameter 'listId' is set
+        if (listId == null) {
+            throw new ApiException("Missing the required parameter 'listId' when calling listListIdContactDelete(Async)");
+        }
+        
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling listListIdContactDelete(Async)");
+        }
+        
+
+        // create path and map variables
+        String localVarPath = "/list/{listId}/contact".replaceAll("\\{format\\}","json")
+        .replaceAll("\\{" + "listId" + "\\}", apiClient.escapeString(listId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (apiKey != null)
+        localVarHeaderParams.put("api_key", apiClient.parameterToString(apiKey));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    /**
+     * Remove a contact from a list
+     * 
+     * @param apiKey  (required)
+     * @param listId ID of list for which contact needs to be remove (required)
+     * @param body Contact email and team id (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void listListIdContactDelete(String apiKey, Long listId, ListContact body) throws ApiException {
+        listListIdContactDeleteWithHttpInfo(apiKey, listId, body);
+    }
+
+    /**
+     * Remove a contact from a list
+     * 
+     * @param apiKey  (required)
+     * @param listId ID of list for which contact needs to be remove (required)
+     * @param body Contact email and team id (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> listListIdContactDeleteWithHttpInfo(String apiKey, Long listId, ListContact body) throws ApiException {
+        com.squareup.okhttp.Call call = listListIdContactDeleteCall(apiKey, listId, body, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Remove a contact from a list (asynchronously)
+     * 
+     * @param apiKey  (required)
+     * @param listId ID of list for which contact needs to be remove (required)
+     * @param body Contact email and team id (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call listListIdContactDeleteAsync(String apiKey, Long listId, ListContact body, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = listListIdContactDeleteCall(apiKey, listId, body, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /* Build call for listListIdContactPost */
+    private com.squareup.okhttp.Call listListIdContactPostCall(String apiKey, Long listId, ListContact body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+        
+        // verify the required parameter 'apiKey' is set
+        if (apiKey == null) {
+            throw new ApiException("Missing the required parameter 'apiKey' when calling listListIdContactPost(Async)");
+        }
+        
+        // verify the required parameter 'listId' is set
+        if (listId == null) {
+            throw new ApiException("Missing the required parameter 'listId' when calling listListIdContactPost(Async)");
+        }
+        
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling listListIdContactPost(Async)");
+        }
+        
+
+        // create path and map variables
+        String localVarPath = "/list/{listId}/contact".replaceAll("\\{format\\}","json")
+        .replaceAll("\\{" + "listId" + "\\}", apiClient.escapeString(listId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (apiKey != null)
+        localVarHeaderParams.put("api_key", apiClient.parameterToString(apiKey));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    /**
+     * Add a contact to a list
+     * 
+     * @param apiKey  (required)
+     * @param listId ID of list for which the contact needs to be added (required)
+     * @param body Contact email and team id (required)
+     * @return InlineResponse20015
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public InlineResponse20015 listListIdContactPost(String apiKey, Long listId, ListContact body) throws ApiException {
+        ApiResponse<InlineResponse20015> resp = listListIdContactPostWithHttpInfo(apiKey, listId, body);
+        return resp.getData();
+    }
+
+    /**
+     * Add a contact to a list
+     * 
+     * @param apiKey  (required)
+     * @param listId ID of list for which the contact needs to be added (required)
+     * @param body Contact email and team id (required)
+     * @return ApiResponse&lt;InlineResponse20015&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<InlineResponse20015> listListIdContactPostWithHttpInfo(String apiKey, Long listId, ListContact body) throws ApiException {
+        com.squareup.okhttp.Call call = listListIdContactPostCall(apiKey, listId, body, null, null);
+        Type localVarReturnType = new TypeToken<InlineResponse20015>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Add a contact to a list (asynchronously)
+     * 
+     * @param apiKey  (required)
+     * @param listId ID of list for which the contact needs to be added (required)
+     * @param body Contact email and team id (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call listListIdContactPostAsync(String apiKey, Long listId, ListContact body, final ApiCallback<InlineResponse20015> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = listListIdContactPostCall(apiKey, listId, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<InlineResponse20015>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -725,41 +973,41 @@ public class ListApi {
 
     /**
      * Add a new list
-     * 
+     * Adding a new list with all the fields. List type can be 0 - Single OptIn 1 - Double OptIn
      * @param apiKey  (required)
      * @param body List object that needs to be added (required)
-     * @return InlineResponse2008
+     * @return InlineResponse2009
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse2008 listPost(String apiKey, ListAddUpdate body) throws ApiException {
-        ApiResponse<InlineResponse2008> resp = listPostWithHttpInfo(apiKey, body);
+    public InlineResponse2009 listPost(String apiKey, ListAddUpdate body) throws ApiException {
+        ApiResponse<InlineResponse2009> resp = listPostWithHttpInfo(apiKey, body);
         return resp.getData();
     }
 
     /**
      * Add a new list
-     * 
+     * Adding a new list with all the fields. List type can be 0 - Single OptIn 1 - Double OptIn
      * @param apiKey  (required)
      * @param body List object that needs to be added (required)
-     * @return ApiResponse&lt;InlineResponse2008&gt;
+     * @return ApiResponse&lt;InlineResponse2009&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse2008> listPostWithHttpInfo(String apiKey, ListAddUpdate body) throws ApiException {
+    public ApiResponse<InlineResponse2009> listPostWithHttpInfo(String apiKey, ListAddUpdate body) throws ApiException {
         com.squareup.okhttp.Call call = listPostCall(apiKey, body, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse2008>(){}.getType();
+        Type localVarReturnType = new TypeToken<InlineResponse2009>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Add a new list (asynchronously)
-     * 
+     * Adding a new list with all the fields. List type can be 0 - Single OptIn 1 - Double OptIn
      * @param apiKey  (required)
      * @param body List object that needs to be added (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listPostAsync(String apiKey, ListAddUpdate body, final ApiCallback<InlineResponse2008> callback) throws ApiException {
+    public com.squareup.okhttp.Call listPostAsync(String apiKey, ListAddUpdate body, final ApiCallback<InlineResponse2009> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -781,7 +1029,7 @@ public class ListApi {
         }
 
         com.squareup.okhttp.Call call = listPostCall(apiKey, body, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse2008>(){}.getType();
+        Type localVarReturnType = new TypeToken<InlineResponse2009>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

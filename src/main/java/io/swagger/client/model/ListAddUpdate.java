@@ -1,6 +1,6 @@
 /**
  * SendX API
- * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures   that SendX platform is able to satisfy such unforeseen use cases. They may range from building     custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form  required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",      \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status  The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data  The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message  This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
+ * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
  *
  * OpenAPI spec version: v1
  * 
@@ -34,94 +34,67 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * ListAddUpdate
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-15T11:32:24.408Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-09-26T03:51:53.133Z")
 public class ListAddUpdate   {
-  @SerializedName("encryptedId")
-  private String encryptedId = null;
-
   @SerializedName("name")
   private String name = null;
 
   @SerializedName("type")
   private Integer type = null;
 
+  @SerializedName("thankyou_from_name")
+  private String thankyouFromName = null;
+
   @SerializedName("thankyou_from_email")
   private String thankyouFromEmail = null;
 
-  @SerializedName("thankyouMailSubject")
+  @SerializedName("thankyou_mail_subject")
   private String thankyouMailSubject = null;
 
-  @SerializedName("thankyouMailMessage")
+  @SerializedName("thankyou_mail_message")
   private String thankyouMailMessage = null;
+
+  @SerializedName("confirm_from_name")
+  private String confirmFromName = null;
 
   @SerializedName("confirm_from_email")
   private String confirmFromEmail = null;
 
-  @SerializedName("confirmMailSubject")
+  @SerializedName("confirm_mail_subject")
   private String confirmMailSubject = null;
 
-  @SerializedName("confirmMailMessage")
+  @SerializedName("confirm_mail_message")
   private String confirmMailMessage = null;
+
+  @SerializedName("goodbye_from_name")
+  private String goodbyeFromName = null;
 
   @SerializedName("goodbye_from_email")
   private String goodbyeFromEmail = null;
 
-  @SerializedName("goodbyeMailSubject")
+  @SerializedName("goodbye_mail_subject")
   private String goodbyeMailSubject = null;
 
-  @SerializedName("goodbyeMailMessage")
+  @SerializedName("goodbye_mail_message")
   private String goodbyeMailMessage = null;
 
-  @SerializedName("sendThankYouMail")
-  private Boolean sendThankYouMail = null;
+  @SerializedName("send_thankyou_mail")
+  private Boolean sendThankyouMail = null;
 
-  @SerializedName("sendConfirmUnsubscribeMail")
+  @SerializedName("send_confirm_unsubscribe_mail")
   private Boolean sendConfirmUnsubscribeMail = null;
 
-  @SerializedName("subscribeSuccessPage")
+  @SerializedName("subscribe_success_page")
   private String subscribeSuccessPage = null;
 
-  @SerializedName("confirmSuccessPage")
+  @SerializedName("confirm_success_page")
   private String confirmSuccessPage = null;
 
-  @SerializedName("unsubscribeSuccessPage")
+  @SerializedName("unsubscribe_success_page")
   private String unsubscribeSuccessPage = null;
 
   @SerializedName("team_id")
   private Integer teamId = null;
-
-  @SerializedName("subscribed")
-  private Integer subscribed = null;
-
-  @SerializedName("confirmed")
-  private Integer confirmed = null;
-
-  @SerializedName("unsubscribed")
-  private Integer unsubscribed = null;
-
-  @SerializedName("bounced")
-  private Integer bounced = null;
-
-  @SerializedName("marked_spam")
-  private Integer markedSpam = null;
-
-  public ListAddUpdate encryptedId(String encryptedId) {
-    this.encryptedId = encryptedId;
-    return this;
-  }
-
-   /**
-   * Get encryptedId
-   * @return encryptedId
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public String getEncryptedId() {
-    return encryptedId;
-  }
-
-  public void setEncryptedId(String encryptedId) {
-    this.encryptedId = encryptedId;
-  }
 
   public ListAddUpdate name(String name) {
     this.name = name;
@@ -157,6 +130,24 @@ public class ListAddUpdate   {
 
   public void setType(Integer type) {
     this.type = type;
+  }
+
+  public ListAddUpdate thankyouFromName(String thankyouFromName) {
+    this.thankyouFromName = thankyouFromName;
+    return this;
+  }
+
+   /**
+   * Get thankyouFromName
+   * @return thankyouFromName
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public String getThankyouFromName() {
+    return thankyouFromName;
+  }
+
+  public void setThankyouFromName(String thankyouFromName) {
+    this.thankyouFromName = thankyouFromName;
   }
 
   public ListAddUpdate thankyouFromEmail(String thankyouFromEmail) {
@@ -213,6 +204,24 @@ public class ListAddUpdate   {
     this.thankyouMailMessage = thankyouMailMessage;
   }
 
+  public ListAddUpdate confirmFromName(String confirmFromName) {
+    this.confirmFromName = confirmFromName;
+    return this;
+  }
+
+   /**
+   * Get confirmFromName
+   * @return confirmFromName
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public String getConfirmFromName() {
+    return confirmFromName;
+  }
+
+  public void setConfirmFromName(String confirmFromName) {
+    this.confirmFromName = confirmFromName;
+  }
+
   public ListAddUpdate confirmFromEmail(String confirmFromEmail) {
     this.confirmFromEmail = confirmFromEmail;
     return this;
@@ -265,6 +274,24 @@ public class ListAddUpdate   {
 
   public void setConfirmMailMessage(String confirmMailMessage) {
     this.confirmMailMessage = confirmMailMessage;
+  }
+
+  public ListAddUpdate goodbyeFromName(String goodbyeFromName) {
+    this.goodbyeFromName = goodbyeFromName;
+    return this;
+  }
+
+   /**
+   * Get goodbyeFromName
+   * @return goodbyeFromName
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public String getGoodbyeFromName() {
+    return goodbyeFromName;
+  }
+
+  public void setGoodbyeFromName(String goodbyeFromName) {
+    this.goodbyeFromName = goodbyeFromName;
   }
 
   public ListAddUpdate goodbyeFromEmail(String goodbyeFromEmail) {
@@ -321,22 +348,22 @@ public class ListAddUpdate   {
     this.goodbyeMailMessage = goodbyeMailMessage;
   }
 
-  public ListAddUpdate sendThankYouMail(Boolean sendThankYouMail) {
-    this.sendThankYouMail = sendThankYouMail;
+  public ListAddUpdate sendThankyouMail(Boolean sendThankyouMail) {
+    this.sendThankyouMail = sendThankyouMail;
     return this;
   }
 
    /**
-   * Get sendThankYouMail
-   * @return sendThankYouMail
+   * Get sendThankyouMail
+   * @return sendThankyouMail
   **/
   @ApiModelProperty(example = "null", value = "")
-  public Boolean getSendThankYouMail() {
-    return sendThankYouMail;
+  public Boolean getSendThankyouMail() {
+    return sendThankyouMail;
   }
 
-  public void setSendThankYouMail(Boolean sendThankYouMail) {
-    this.sendThankYouMail = sendThankYouMail;
+  public void setSendThankyouMail(Boolean sendThankyouMail) {
+    this.sendThankyouMail = sendThankyouMail;
   }
 
   public ListAddUpdate sendConfirmUnsubscribeMail(Boolean sendConfirmUnsubscribeMail) {
@@ -429,96 +456,6 @@ public class ListAddUpdate   {
     this.teamId = teamId;
   }
 
-  public ListAddUpdate subscribed(Integer subscribed) {
-    this.subscribed = subscribed;
-    return this;
-  }
-
-   /**
-   * Get subscribed
-   * @return subscribed
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public Integer getSubscribed() {
-    return subscribed;
-  }
-
-  public void setSubscribed(Integer subscribed) {
-    this.subscribed = subscribed;
-  }
-
-  public ListAddUpdate confirmed(Integer confirmed) {
-    this.confirmed = confirmed;
-    return this;
-  }
-
-   /**
-   * Get confirmed
-   * @return confirmed
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public Integer getConfirmed() {
-    return confirmed;
-  }
-
-  public void setConfirmed(Integer confirmed) {
-    this.confirmed = confirmed;
-  }
-
-  public ListAddUpdate unsubscribed(Integer unsubscribed) {
-    this.unsubscribed = unsubscribed;
-    return this;
-  }
-
-   /**
-   * Get unsubscribed
-   * @return unsubscribed
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public Integer getUnsubscribed() {
-    return unsubscribed;
-  }
-
-  public void setUnsubscribed(Integer unsubscribed) {
-    this.unsubscribed = unsubscribed;
-  }
-
-  public ListAddUpdate bounced(Integer bounced) {
-    this.bounced = bounced;
-    return this;
-  }
-
-   /**
-   * Get bounced
-   * @return bounced
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public Integer getBounced() {
-    return bounced;
-  }
-
-  public void setBounced(Integer bounced) {
-    this.bounced = bounced;
-  }
-
-  public ListAddUpdate markedSpam(Integer markedSpam) {
-    this.markedSpam = markedSpam;
-    return this;
-  }
-
-   /**
-   * Get markedSpam
-   * @return markedSpam
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public Integer getMarkedSpam() {
-    return markedSpam;
-  }
-
-  public void setMarkedSpam(Integer markedSpam) {
-    this.markedSpam = markedSpam;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -529,34 +466,31 @@ public class ListAddUpdate   {
       return false;
     }
     ListAddUpdate listAddUpdate = (ListAddUpdate) o;
-    return Objects.equals(this.encryptedId, listAddUpdate.encryptedId) &&
-        Objects.equals(this.name, listAddUpdate.name) &&
+    return Objects.equals(this.name, listAddUpdate.name) &&
         Objects.equals(this.type, listAddUpdate.type) &&
+        Objects.equals(this.thankyouFromName, listAddUpdate.thankyouFromName) &&
         Objects.equals(this.thankyouFromEmail, listAddUpdate.thankyouFromEmail) &&
         Objects.equals(this.thankyouMailSubject, listAddUpdate.thankyouMailSubject) &&
         Objects.equals(this.thankyouMailMessage, listAddUpdate.thankyouMailMessage) &&
+        Objects.equals(this.confirmFromName, listAddUpdate.confirmFromName) &&
         Objects.equals(this.confirmFromEmail, listAddUpdate.confirmFromEmail) &&
         Objects.equals(this.confirmMailSubject, listAddUpdate.confirmMailSubject) &&
         Objects.equals(this.confirmMailMessage, listAddUpdate.confirmMailMessage) &&
+        Objects.equals(this.goodbyeFromName, listAddUpdate.goodbyeFromName) &&
         Objects.equals(this.goodbyeFromEmail, listAddUpdate.goodbyeFromEmail) &&
         Objects.equals(this.goodbyeMailSubject, listAddUpdate.goodbyeMailSubject) &&
         Objects.equals(this.goodbyeMailMessage, listAddUpdate.goodbyeMailMessage) &&
-        Objects.equals(this.sendThankYouMail, listAddUpdate.sendThankYouMail) &&
+        Objects.equals(this.sendThankyouMail, listAddUpdate.sendThankyouMail) &&
         Objects.equals(this.sendConfirmUnsubscribeMail, listAddUpdate.sendConfirmUnsubscribeMail) &&
         Objects.equals(this.subscribeSuccessPage, listAddUpdate.subscribeSuccessPage) &&
         Objects.equals(this.confirmSuccessPage, listAddUpdate.confirmSuccessPage) &&
         Objects.equals(this.unsubscribeSuccessPage, listAddUpdate.unsubscribeSuccessPage) &&
-        Objects.equals(this.teamId, listAddUpdate.teamId) &&
-        Objects.equals(this.subscribed, listAddUpdate.subscribed) &&
-        Objects.equals(this.confirmed, listAddUpdate.confirmed) &&
-        Objects.equals(this.unsubscribed, listAddUpdate.unsubscribed) &&
-        Objects.equals(this.bounced, listAddUpdate.bounced) &&
-        Objects.equals(this.markedSpam, listAddUpdate.markedSpam);
+        Objects.equals(this.teamId, listAddUpdate.teamId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(encryptedId, name, type, thankyouFromEmail, thankyouMailSubject, thankyouMailMessage, confirmFromEmail, confirmMailSubject, confirmMailMessage, goodbyeFromEmail, goodbyeMailSubject, goodbyeMailMessage, sendThankYouMail, sendConfirmUnsubscribeMail, subscribeSuccessPage, confirmSuccessPage, unsubscribeSuccessPage, teamId, subscribed, confirmed, unsubscribed, bounced, markedSpam);
+    return Objects.hash(name, type, thankyouFromName, thankyouFromEmail, thankyouMailSubject, thankyouMailMessage, confirmFromName, confirmFromEmail, confirmMailSubject, confirmMailMessage, goodbyeFromName, goodbyeFromEmail, goodbyeMailSubject, goodbyeMailMessage, sendThankyouMail, sendConfirmUnsubscribeMail, subscribeSuccessPage, confirmSuccessPage, unsubscribeSuccessPage, teamId);
   }
 
   @Override
@@ -564,29 +498,26 @@ public class ListAddUpdate   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListAddUpdate {\n");
     
-    sb.append("    encryptedId: ").append(toIndentedString(encryptedId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    thankyouFromName: ").append(toIndentedString(thankyouFromName)).append("\n");
     sb.append("    thankyouFromEmail: ").append(toIndentedString(thankyouFromEmail)).append("\n");
     sb.append("    thankyouMailSubject: ").append(toIndentedString(thankyouMailSubject)).append("\n");
     sb.append("    thankyouMailMessage: ").append(toIndentedString(thankyouMailMessage)).append("\n");
+    sb.append("    confirmFromName: ").append(toIndentedString(confirmFromName)).append("\n");
     sb.append("    confirmFromEmail: ").append(toIndentedString(confirmFromEmail)).append("\n");
     sb.append("    confirmMailSubject: ").append(toIndentedString(confirmMailSubject)).append("\n");
     sb.append("    confirmMailMessage: ").append(toIndentedString(confirmMailMessage)).append("\n");
+    sb.append("    goodbyeFromName: ").append(toIndentedString(goodbyeFromName)).append("\n");
     sb.append("    goodbyeFromEmail: ").append(toIndentedString(goodbyeFromEmail)).append("\n");
     sb.append("    goodbyeMailSubject: ").append(toIndentedString(goodbyeMailSubject)).append("\n");
     sb.append("    goodbyeMailMessage: ").append(toIndentedString(goodbyeMailMessage)).append("\n");
-    sb.append("    sendThankYouMail: ").append(toIndentedString(sendThankYouMail)).append("\n");
+    sb.append("    sendThankyouMail: ").append(toIndentedString(sendThankyouMail)).append("\n");
     sb.append("    sendConfirmUnsubscribeMail: ").append(toIndentedString(sendConfirmUnsubscribeMail)).append("\n");
     sb.append("    subscribeSuccessPage: ").append(toIndentedString(subscribeSuccessPage)).append("\n");
     sb.append("    confirmSuccessPage: ").append(toIndentedString(confirmSuccessPage)).append("\n");
     sb.append("    unsubscribeSuccessPage: ").append(toIndentedString(unsubscribeSuccessPage)).append("\n");
     sb.append("    teamId: ").append(toIndentedString(teamId)).append("\n");
-    sb.append("    subscribed: ").append(toIndentedString(subscribed)).append("\n");
-    sb.append("    confirmed: ").append(toIndentedString(confirmed)).append("\n");
-    sb.append("    unsubscribed: ").append(toIndentedString(unsubscribed)).append("\n");
-    sb.append("    bounced: ").append(toIndentedString(bounced)).append("\n");
-    sb.append("    markedSpam: ").append(toIndentedString(markedSpam)).append("\n");
     sb.append("}");
     return sb.toString();
   }

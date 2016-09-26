@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **teamId** | **Integer** |  |  [optional]
 **providerId** | **Integer** |  |  [optional]
 **listIds** | **List&lt;Integer&gt;** |  |  [optional]
+**tagIds** | **List&lt;Integer&gt;** |  |  [optional]
+**segmentIds** | **List&lt;Integer&gt;** |  |  [optional]
 
 
 

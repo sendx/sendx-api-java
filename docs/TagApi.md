@@ -1,6 +1,6 @@
 # TagApi
 
-All URIs are relative to *http://127.0.0.1:8080/api/v1*
+All URIs are relative to *http://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 <a name="tagGet"></a>
 # **tagGet**
-> InlineResponse2009 tagGet(apiKey)
+> InlineResponse20010 tagGet(apiKey)
 
 Get information about all tags
 
@@ -32,7 +32,7 @@ Get information about all tags
 TagApi apiInstance = new TagApi();
 String apiKey = "apiKey_example"; // String | 
 try {
-    InlineResponse2009 result = apiInstance.tagGet(apiKey);
+    InlineResponse20010 result = apiInstance.tagGet(apiKey);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TagApi#tagGet");
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**InlineResponse20010**](InlineResponse20010.md)
 
 ### Authorization
 
@@ -61,7 +61,7 @@ No authorization required
 
 <a name="tagPost"></a>
 # **tagPost**
-> InlineResponse20010 tagPost(apiKey, body)
+> InlineResponse20011 tagPost(apiKey, body)
 
 Add a new tag
 
@@ -78,7 +78,7 @@ TagApi apiInstance = new TagApi();
 String apiKey = "apiKey_example"; // String | 
 TagAddUpdate body = new TagAddUpdate(); // TagAddUpdate | Tag object that needs to be added
 try {
-    InlineResponse20010 result = apiInstance.tagPost(apiKey, body);
+    InlineResponse20011 result = apiInstance.tagPost(apiKey, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TagApi#tagPost");
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**InlineResponse20011**](InlineResponse20011.md)
 
 ### Authorization
 
@@ -156,7 +156,7 @@ No authorization required
 
 <a name="tagTagIdContactPost"></a>
 # **tagTagIdContactPost**
-> InlineResponse20011 tagTagIdContactPost(apiKey, tagId, body)
+> InlineResponse20012 tagTagIdContactPost(apiKey, tagId, body)
 
 Add a contact to a tag
 
@@ -174,7 +174,7 @@ String apiKey = "apiKey_example"; // String |
 Long tagId = 789L; // Long | ID of tag for which the contact needs to be added
 TagContact body = new TagContact(); // TagContact | Contact email and team id
 try {
-    InlineResponse20011 result = apiInstance.tagTagIdContactPost(apiKey, tagId, body);
+    InlineResponse20012 result = apiInstance.tagTagIdContactPost(apiKey, tagId, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TagApi#tagTagIdContactPost");
@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**InlineResponse20012**](InlineResponse20012.md)
 
 ### Authorization
 

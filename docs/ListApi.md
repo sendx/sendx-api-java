@@ -1,10 +1,12 @@
 # ListApi
 
-All URIs are relative to *http://127.0.0.1:8080/api/v1*
+All URIs are relative to *http://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**listGet**](ListApi.md#listGet) | **GET** /list | Get information about all lists
+[**listListIdContactDelete**](ListApi.md#listListIdContactDelete) | **DELETE** /list/{listId}/contact | Remove a contact from a list
+[**listListIdContactPost**](ListApi.md#listListIdContactPost) | **POST** /list/{listId}/contact | Add a contact to a list
 [**listListIdContactsGet**](ListApi.md#listListIdContactsGet) | **GET** /list/{listId}/contacts | Find contacts belonging to a list
 [**listListIdDelete**](ListApi.md#listListIdDelete) | **DELETE** /list/{listId} | Deletes a list
 [**listListIdGet**](ListApi.md#listListIdGet) | **GET** /list/{listId} | Find list by ID
@@ -14,7 +16,7 @@ Method | HTTP request | Description
 
 <a name="listGet"></a>
 # **listGet**
-> InlineResponse2007 listGet(apiKey)
+> InlineResponse2008 listGet(apiKey)
 
 Get information about all lists
 
@@ -30,7 +32,7 @@ Get information about all lists
 ListApi apiInstance = new ListApi();
 String apiKey = "apiKey_example"; // String | 
 try {
-    InlineResponse2007 result = apiInstance.listGet(apiKey);
+    InlineResponse2008 result = apiInstance.listGet(apiKey);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ListApi#listGet");
@@ -46,7 +48,104 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2007**](InlineResponse2007.md)
+[**InlineResponse2008**](InlineResponse2008.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="listListIdContactDelete"></a>
+# **listListIdContactDelete**
+> listListIdContactDelete(apiKey, listId, body)
+
+Remove a contact from a list
+
+
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiException;
+//import io.swagger.client.api.ListApi;
+
+
+ListApi apiInstance = new ListApi();
+String apiKey = "apiKey_example"; // String | 
+Long listId = 789L; // Long | ID of list for which contact needs to be remove
+ListContact body = new ListContact(); // ListContact | Contact email and team id
+try {
+    apiInstance.listListIdContactDelete(apiKey, listId, body);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ListApi#listListIdContactDelete");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **apiKey** | **String**|  |
+ **listId** | **Long**| ID of list for which contact needs to be remove |
+ **body** | [**ListContact**](ListContact.md)| Contact email and team id |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="listListIdContactPost"></a>
+# **listListIdContactPost**
+> InlineResponse20015 listListIdContactPost(apiKey, listId, body)
+
+Add a contact to a list
+
+
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiException;
+//import io.swagger.client.api.ListApi;
+
+
+ListApi apiInstance = new ListApi();
+String apiKey = "apiKey_example"; // String | 
+Long listId = 789L; // Long | ID of list for which the contact needs to be added
+ListContact body = new ListContact(); // ListContact | Contact email and team id
+try {
+    InlineResponse20015 result = apiInstance.listListIdContactPost(apiKey, listId, body);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ListApi#listListIdContactPost");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **apiKey** | **String**|  |
+ **listId** | **Long**| ID of list for which the contact needs to be added |
+ **body** | [**ListContact**](ListContact.md)| Contact email and team id |
+
+### Return type
+
+[**InlineResponse20015**](InlineResponse20015.md)
 
 ### Authorization
 
@@ -256,11 +355,11 @@ No authorization required
 
 <a name="listPost"></a>
 # **listPost**
-> InlineResponse2008 listPost(apiKey, body)
+> InlineResponse2009 listPost(apiKey, body)
 
 Add a new list
 
-
+Adding a new list with all the fields. List type can be 0 - Single OptIn 1 - Double OptIn
 
 ### Example
 ```java
@@ -273,7 +372,7 @@ ListApi apiInstance = new ListApi();
 String apiKey = "apiKey_example"; // String | 
 ListAddUpdate body = new ListAddUpdate(); // ListAddUpdate | List object that needs to be added
 try {
-    InlineResponse2008 result = apiInstance.listPost(apiKey, body);
+    InlineResponse2009 result = apiInstance.listPost(apiKey, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ListApi#listPost");
@@ -290,7 +389,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**InlineResponse2009**](InlineResponse2009.md)
 
 ### Authorization
 

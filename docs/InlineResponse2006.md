@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | **String** |  |  [optional]
 **message** | **String** |  |  [optional]
-**data** | [**Link**](Link.md) |  |  [optional]
+**data** | [**List&lt;Customfield&gt;**](Customfield.md) |  |  [optional]
 
 
 

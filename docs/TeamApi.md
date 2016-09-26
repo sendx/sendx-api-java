@@ -1,6 +1,6 @@
 # TeamApi
 
-All URIs are relative to *http://127.0.0.1:8080/api/v1*
+All URIs are relative to *http://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 <a name="teamGet"></a>
 # **teamGet**
-> InlineResponse20012 teamGet(apiKey)
+> InlineResponse20013 teamGet(apiKey)
 
 Get information about all teams
 
@@ -33,7 +33,7 @@ Get information about all teams
 TeamApi apiInstance = new TeamApi();
 String apiKey = "apiKey_example"; // String | 
 try {
-    InlineResponse20012 result = apiInstance.teamGet(apiKey);
+    InlineResponse20013 result = apiInstance.teamGet(apiKey);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TeamApi#teamGet");
@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**InlineResponse20013**](InlineResponse20013.md)
 
 ### Authorization
 
@@ -62,7 +62,7 @@ No authorization required
 
 <a name="teamPost"></a>
 # **teamPost**
-> InlineResponse20013 teamPost(apiKey, body)
+> InlineResponse20014 teamPost(apiKey, body)
 
 Add a new team
 
@@ -79,7 +79,7 @@ TeamApi apiInstance = new TeamApi();
 String apiKey = "apiKey_example"; // String | 
 TeamAddUpdate body = new TeamAddUpdate(); // TeamAddUpdate | Team object that needs to be added
 try {
-    InlineResponse20013 result = apiInstance.teamPost(apiKey, body);
+    InlineResponse20014 result = apiInstance.teamPost(apiKey, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TeamApi#teamPost");
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20013**](InlineResponse20013.md)
+[**InlineResponse20014**](InlineResponse20014.md)
 
 ### Authorization
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | **String** |  |  [optional]
 **message** | **String** |  |  [optional]
-**data** | [**List&lt;Tag&gt;**](Tag.md) |  |  [optional]
+**data** | [**List**](List.md) |  |  [optional]
 
 
 
