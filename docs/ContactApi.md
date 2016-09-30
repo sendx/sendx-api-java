@@ -203,7 +203,7 @@ No authorization required
 
 <a name="contactContactIdPut"></a>
 # **contactContactIdPut**
-> InlineResponse2002 contactContactIdPut(apiKey, contactId, body)
+> InlineResponse2004 contactContactIdPut(apiKey, contactId, body)
 
 Update a contact by ID
 
@@ -221,7 +221,7 @@ String apiKey = "apiKey_example"; // String |
 Long contactId = 789L; // Long | ID of contact that needs to be updated
 ContactAddUpdate body = new ContactAddUpdate(); // ContactAddUpdate | Contact object that needs to be added
 try {
-    InlineResponse2002 result = apiInstance.contactContactIdPut(apiKey, contactId, body);
+    InlineResponse2004 result = apiInstance.contactContactIdPut(apiKey, contactId, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ContactApi#contactContactIdPut");
@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2002**](InlineResponse2002.md)
+[**InlineResponse2004**](InlineResponse2004.md)
 
 ### Authorization
 

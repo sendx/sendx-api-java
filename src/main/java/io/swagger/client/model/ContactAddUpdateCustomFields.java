@@ -26,58 +26,15 @@
 package io.swagger.client.model;
 
 import java.util.Objects;
-import com.google.gson.annotations.SerializedName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
  * ContactAddUpdateCustomFields
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-09-26T05:59:43.206Z")
-public class ContactAddUpdateCustomFields   {
-  @SerializedName("field_name_1")
-  private String fieldName1 = null;
-
-  @SerializedName("field_name_2")
-  private String fieldName2 = null;
-
-  public ContactAddUpdateCustomFields fieldName1(String fieldName1) {
-    this.fieldName1 = fieldName1;
-    return this;
-  }
-
-   /**
-   * Get fieldName1
-   * @return fieldName1
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public String getFieldName1() {
-    return fieldName1;
-  }
-
-  public void setFieldName1(String fieldName1) {
-    this.fieldName1 = fieldName1;
-  }
-
-  public ContactAddUpdateCustomFields fieldName2(String fieldName2) {
-    this.fieldName2 = fieldName2;
-    return this;
-  }
-
-   /**
-   * Get fieldName2
-   * @return fieldName2
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public String getFieldName2() {
-    return fieldName2;
-  }
-
-  public void setFieldName2(String fieldName2) {
-    this.fieldName2 = fieldName2;
-  }
-
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-09-30T10:45:06.676Z")
+public class ContactAddUpdateCustomFields extends HashMap<String, String>  {
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -87,23 +44,19 @@ public class ContactAddUpdateCustomFields   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ContactAddUpdateCustomFields contactAddUpdateCustomFields = (ContactAddUpdateCustomFields) o;
-    return Objects.equals(this.fieldName1, contactAddUpdateCustomFields.fieldName1) &&
-        Objects.equals(this.fieldName2, contactAddUpdateCustomFields.fieldName2);
+    return true;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fieldName1, fieldName2);
+    return Objects.hash(super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ContactAddUpdateCustomFields {\n");
-    
-    sb.append("    fieldName1: ").append(toIndentedString(fieldName1)).append("\n");
-    sb.append("    fieldName2: ").append(toIndentedString(fieldName2)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

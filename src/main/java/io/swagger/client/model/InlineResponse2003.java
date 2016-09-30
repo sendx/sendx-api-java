@@ -29,7 +29,7 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.Contact;
+import io.swagger.client.model.ContactAddUpdate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +37,7 @@ import java.util.List;
 /**
  * InlineResponse2003
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-09-26T05:59:43.206Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-09-30T10:45:06.676Z")
 public class InlineResponse2003   {
   @SerializedName("status")
   private String status = null;
@@ -46,7 +46,7 @@ public class InlineResponse2003   {
   private String message = null;
 
   @SerializedName("data")
-  private List<Contact> data = new ArrayList<Contact>();
+  private List<ContactAddUpdate> data = new ArrayList<ContactAddUpdate>();
 
   public InlineResponse2003 status(String status) {
     this.status = status;
@@ -84,12 +84,12 @@ public class InlineResponse2003   {
     this.message = message;
   }
 
-  public InlineResponse2003 data(List<Contact> data) {
+  public InlineResponse2003 data(List<ContactAddUpdate> data) {
     this.data = data;
     return this;
   }
 
-  public InlineResponse2003 addDataItem(Contact dataItem) {
+  public InlineResponse2003 addDataItem(ContactAddUpdate dataItem) {
     this.data.add(dataItem);
     return this;
   }
@@ -99,11 +99,11 @@ public class InlineResponse2003   {
    * @return data
   **/
   @ApiModelProperty(example = "null", value = "")
-  public List<Contact> getData() {
+  public List<ContactAddUpdate> getData() {
     return data;
   }
 
-  public void setData(List<Contact> data) {
+  public void setData(List<ContactAddUpdate> data) {
     this.data = data;
   }
 

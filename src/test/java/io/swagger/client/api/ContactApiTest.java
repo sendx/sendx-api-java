@@ -31,9 +31,8 @@ import io.swagger.client.model.InlineResponse2005;
 import io.swagger.client.model.ContactCustomfield;
 import io.swagger.client.model.Contact;
 import io.swagger.client.model.ContactAddUpdate;
-import io.swagger.client.model.InlineResponse2002;
-import io.swagger.client.model.InlineResponse2003;
 import io.swagger.client.model.InlineResponse2004;
+import io.swagger.client.model.InlineResponse2003;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -131,7 +130,7 @@ public class ContactApiTest {
         String apiKey = null;
         Long contactId = null;
         ContactAddUpdate body = null;
-        // InlineResponse2002 response = api.contactContactIdPut(apiKey, contactId, body);
+        // InlineResponse2004 response = api.contactContactIdPut(apiKey, contactId, body);
 
         // TODO: test validations
     }

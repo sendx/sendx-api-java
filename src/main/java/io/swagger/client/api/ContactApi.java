@@ -43,9 +43,8 @@ import io.swagger.client.model.InlineResponse2005;
 import io.swagger.client.model.ContactCustomfield;
 import io.swagger.client.model.Contact;
 import io.swagger.client.model.ContactAddUpdate;
-import io.swagger.client.model.InlineResponse2002;
-import io.swagger.client.model.InlineResponse2003;
 import io.swagger.client.model.InlineResponse2004;
+import io.swagger.client.model.InlineResponse2003;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -605,11 +604,11 @@ public class ContactApi {
      * @param apiKey  (required)
      * @param contactId ID of contact that needs to be updated (required)
      * @param body Contact object that needs to be added (required)
-     * @return InlineResponse2002
+     * @return InlineResponse2004
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse2002 contactContactIdPut(String apiKey, Long contactId, ContactAddUpdate body) throws ApiException {
-        ApiResponse<InlineResponse2002> resp = contactContactIdPutWithHttpInfo(apiKey, contactId, body);
+    public InlineResponse2004 contactContactIdPut(String apiKey, Long contactId, ContactAddUpdate body) throws ApiException {
+        ApiResponse<InlineResponse2004> resp = contactContactIdPutWithHttpInfo(apiKey, contactId, body);
         return resp.getData();
     }
 
@@ -619,12 +618,12 @@ public class ContactApi {
      * @param apiKey  (required)
      * @param contactId ID of contact that needs to be updated (required)
      * @param body Contact object that needs to be added (required)
-     * @return ApiResponse&lt;InlineResponse2002&gt;
+     * @return ApiResponse&lt;InlineResponse2004&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse2002> contactContactIdPutWithHttpInfo(String apiKey, Long contactId, ContactAddUpdate body) throws ApiException {
+    public ApiResponse<InlineResponse2004> contactContactIdPutWithHttpInfo(String apiKey, Long contactId, ContactAddUpdate body) throws ApiException {
         com.squareup.okhttp.Call call = contactContactIdPutCall(apiKey, contactId, body, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse2002>(){}.getType();
+        Type localVarReturnType = new TypeToken<InlineResponse2004>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -638,7 +637,7 @@ public class ContactApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call contactContactIdPutAsync(String apiKey, Long contactId, ContactAddUpdate body, final ApiCallback<InlineResponse2002> callback) throws ApiException {
+    public com.squareup.okhttp.Call contactContactIdPutAsync(String apiKey, Long contactId, ContactAddUpdate body, final ApiCallback<InlineResponse2004> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -660,7 +659,7 @@ public class ContactApi {
         }
 
         com.squareup.okhttp.Call call = contactContactIdPutCall(apiKey, contactId, body, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse2002>(){}.getType();
+        Type localVarReturnType = new TypeToken<InlineResponse2004>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
