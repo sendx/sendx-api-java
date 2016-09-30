@@ -1,6 +1,6 @@
 # TeamApi
 
-All URIs are relative to *http://localhost/api/v1*
+All URIs are relative to *http://api.sendx.io/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
