@@ -1,6 +1,6 @@
 /**
  * SendX API
- * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
+ * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - Add new contacts or update them   - Adding/updating custom fields to each contact on the fly   - Add tracking information by adding tags to contacts  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
  *
  * OpenAPI spec version: v1
  * 
@@ -34,15 +34,15 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * Contact
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-09-30T11:03:54.700Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-11-02T08:10:29.251Z")
 public class Contact   {
-  @SerializedName("id")
-  private Integer id = null;
+  @SerializedName("encryptedTeamId")
+  private String encryptedTeamId = null;
 
-  @SerializedName("first_name")
+  @SerializedName("firstName")
   private String firstName = null;
 
-  @SerializedName("last_name")
+  @SerializedName("lastName")
   private String lastName = null;
 
   @SerializedName("email")
@@ -51,40 +51,25 @@ public class Contact   {
   @SerializedName("company")
   private String company = null;
 
-  @SerializedName("language")
-  private String language = null;
+  @SerializedName("birthday")
+  private String birthday = null;
 
-  @SerializedName("country")
-  private String country = null;
-
-  @SerializedName("state")
-  private String state = null;
-
-  @SerializedName("city")
-  private String city = null;
-
-  @SerializedName("custom_fields")
-  private String customFields = null;
-
-  @SerializedName("team_id")
-  private Integer teamId = null;
-
-  public Contact id(Integer id) {
-    this.id = id;
+  public Contact encryptedTeamId(String encryptedTeamId) {
+    this.encryptedTeamId = encryptedTeamId;
     return this;
   }
 
    /**
-   * Get id
-   * @return id
+   * Get encryptedTeamId
+   * @return encryptedTeamId
   **/
   @ApiModelProperty(example = "null", value = "")
-  public Integer getId() {
-    return id;
+  public String getEncryptedTeamId() {
+    return encryptedTeamId;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setEncryptedTeamId(String encryptedTeamId) {
+    this.encryptedTeamId = encryptedTeamId;
   }
 
   public Contact firstName(String firstName) {
@@ -159,112 +144,22 @@ public class Contact   {
     this.company = company;
   }
 
-  public Contact language(String language) {
-    this.language = language;
+  public Contact birthday(String birthday) {
+    this.birthday = birthday;
     return this;
   }
 
    /**
-   * Get language
-   * @return language
+   * Get birthday
+   * @return birthday
   **/
   @ApiModelProperty(example = "null", value = "")
-  public String getLanguage() {
-    return language;
+  public String getBirthday() {
+    return birthday;
   }
 
-  public void setLanguage(String language) {
-    this.language = language;
-  }
-
-  public Contact country(String country) {
-    this.country = country;
-    return this;
-  }
-
-   /**
-   * Get country
-   * @return country
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public String getCountry() {
-    return country;
-  }
-
-  public void setCountry(String country) {
-    this.country = country;
-  }
-
-  public Contact state(String state) {
-    this.state = state;
-    return this;
-  }
-
-   /**
-   * Get state
-   * @return state
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public String getState() {
-    return state;
-  }
-
-  public void setState(String state) {
-    this.state = state;
-  }
-
-  public Contact city(String city) {
-    this.city = city;
-    return this;
-  }
-
-   /**
-   * Get city
-   * @return city
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public String getCity() {
-    return city;
-  }
-
-  public void setCity(String city) {
-    this.city = city;
-  }
-
-  public Contact customFields(String customFields) {
-    this.customFields = customFields;
-    return this;
-  }
-
-   /**
-   * Get customFields
-   * @return customFields
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public String getCustomFields() {
-    return customFields;
-  }
-
-  public void setCustomFields(String customFields) {
-    this.customFields = customFields;
-  }
-
-  public Contact teamId(Integer teamId) {
-    this.teamId = teamId;
-    return this;
-  }
-
-   /**
-   * Get teamId
-   * @return teamId
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public Integer getTeamId() {
-    return teamId;
-  }
-
-  public void setTeamId(Integer teamId) {
-    this.teamId = teamId;
+  public void setBirthday(String birthday) {
+    this.birthday = birthday;
   }
 
 
@@ -277,22 +172,17 @@ public class Contact   {
       return false;
     }
     Contact contact = (Contact) o;
-    return Objects.equals(this.id, contact.id) &&
+    return Objects.equals(this.encryptedTeamId, contact.encryptedTeamId) &&
         Objects.equals(this.firstName, contact.firstName) &&
         Objects.equals(this.lastName, contact.lastName) &&
         Objects.equals(this.email, contact.email) &&
         Objects.equals(this.company, contact.company) &&
-        Objects.equals(this.language, contact.language) &&
-        Objects.equals(this.country, contact.country) &&
-        Objects.equals(this.state, contact.state) &&
-        Objects.equals(this.city, contact.city) &&
-        Objects.equals(this.customFields, contact.customFields) &&
-        Objects.equals(this.teamId, contact.teamId);
+        Objects.equals(this.birthday, contact.birthday);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstName, lastName, email, company, language, country, state, city, customFields, teamId);
+    return Objects.hash(encryptedTeamId, firstName, lastName, email, company, birthday);
   }
 
   @Override
@@ -300,17 +190,12 @@ public class Contact   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Contact {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    encryptedTeamId: ").append(toIndentedString(encryptedTeamId)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    company: ").append(toIndentedString(company)).append("\n");
-    sb.append("    language: ").append(toIndentedString(language)).append("\n");
-    sb.append("    country: ").append(toIndentedString(country)).append("\n");
-    sb.append("    state: ").append(toIndentedString(state)).append("\n");
-    sb.append("    city: ").append(toIndentedString(city)).append("\n");
-    sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
-    sb.append("    teamId: ").append(toIndentedString(teamId)).append("\n");
+    sb.append("    birthday: ").append(toIndentedString(birthday)).append("\n");
     sb.append("}");
     return sb.toString();
   }

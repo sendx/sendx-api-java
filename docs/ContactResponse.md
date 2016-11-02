@@ -1,12 +1,12 @@
 
-# InlineResponse2005
+# ContactResponse
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | **String** |  |  [optional]
 **message** | **String** |  |  [optional]
-**data** | [**ContactCustomfield**](ContactCustomfield.md) |  |  [optional]
+**data** | [**Contact**](Contact.md) |  |  [optional]
 
 
 

@@ -23,62 +23,100 @@
  */
 
 
-package io.swagger.client.api;
+package io.swagger.client.model;
 
-import io.swagger.client.ApiException;
-import io.swagger.client.model.ContactResponse;
-import io.swagger.client.model.Contact;
-import io.swagger.client.model.TrackResponse;
-import org.junit.Test;
+import java.util.Objects;
+import com.google.gson.annotations.SerializedName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
- * API tests for ContactApi
+ * TrackResponse
  */
-public class ContactApiTest {
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-11-02T08:10:29.251Z")
+public class TrackResponse   {
+  @SerializedName("status")
+  private String status = null;
 
-    private final ContactApi api = new ContactApi();
+  @SerializedName("message")
+  private String message = null;
 
-    
-    /**
-     * Identify a contact as user
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void contactIdentifyPostTest() throws ApiException {
-        String apiKey = null;
-        String teamId = null;
-        Contact body = null;
-        // ContactResponse response = api.contactIdentifyPost(apiKey, teamId, body);
+  public TrackResponse status(String status) {
+    this.status = status;
+    return this;
+  }
 
-        // TODO: test validations
+   /**
+   * Get status
+   * @return status
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+  public TrackResponse message(String message) {
+    this.message = message;
+    return this;
+  }
+
+   /**
+   * Get message
+   * @return message
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
+
+  @Override
+  public boolean equals(java.lang.Object o) {
+    if (this == o) {
+      return true;
     }
-    
-    /**
-     * Add tracking info using tags to a contact
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void contactTrackPostTest() throws ApiException {
-        String apiKey = null;
-        String teamId = null;
-        String contactId = null;
-        String tag = null;
-        // TrackResponse response = api.contactTrackPost(apiKey, teamId, contactId, tag);
-
-        // TODO: test validations
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    TrackResponse trackResponse = (TrackResponse) o;
+    return Objects.equals(this.status, trackResponse.status) &&
+        Objects.equals(this.message, trackResponse.message);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(status, message);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class TrackResponse {\n");
     
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(java.lang.Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
 }
+

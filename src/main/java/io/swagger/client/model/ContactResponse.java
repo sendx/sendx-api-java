@@ -1,6 +1,6 @@
 /**
  * SendX API
- * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - subscribe / unsubscribe a contact from a list   - Schedule campaign to a segment of users   - Trigger transactional emails   - Get / PUT / POST and DELETE operations on team, campaign, list, contact, report etc. and so on.  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
+ * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - Add new contacts or update them   - Adding/updating custom fields to each contact on the fly   - Add tracking information by adding tags to contacts  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
  *
  * OpenAPI spec version: v1
  * 
@@ -29,14 +29,14 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.Tag;
+import io.swagger.client.model.Contact;
 
 
 /**
- * InlineResponse20011
+ * ContactResponse
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-09-30T11:03:54.700Z")
-public class InlineResponse20011   {
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-11-02T08:10:29.251Z")
+public class ContactResponse   {
   @SerializedName("status")
   private String status = null;
 
@@ -44,9 +44,9 @@ public class InlineResponse20011   {
   private String message = null;
 
   @SerializedName("data")
-  private Tag data = null;
+  private Contact data = null;
 
-  public InlineResponse20011 status(String status) {
+  public ContactResponse status(String status) {
     this.status = status;
     return this;
   }
@@ -64,7 +64,7 @@ public class InlineResponse20011   {
     this.status = status;
   }
 
-  public InlineResponse20011 message(String message) {
+  public ContactResponse message(String message) {
     this.message = message;
     return this;
   }
@@ -82,7 +82,7 @@ public class InlineResponse20011   {
     this.message = message;
   }
 
-  public InlineResponse20011 data(Tag data) {
+  public ContactResponse data(Contact data) {
     this.data = data;
     return this;
   }
@@ -92,11 +92,11 @@ public class InlineResponse20011   {
    * @return data
   **/
   @ApiModelProperty(example = "null", value = "")
-  public Tag getData() {
+  public Contact getData() {
     return data;
   }
 
-  public void setData(Tag data) {
+  public void setData(Contact data) {
     this.data = data;
   }
 
@@ -109,10 +109,10 @@ public class InlineResponse20011   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse20011 inlineResponse20011 = (InlineResponse20011) o;
-    return Objects.equals(this.status, inlineResponse20011.status) &&
-        Objects.equals(this.message, inlineResponse20011.message) &&
-        Objects.equals(this.data, inlineResponse20011.data);
+    ContactResponse contactResponse = (ContactResponse) o;
+    return Objects.equals(this.status, contactResponse.status) &&
+        Objects.equals(this.message, contactResponse.message) &&
+        Objects.equals(this.data, contactResponse.data);
   }
 
   @Override
@@ -123,7 +123,7 @@ public class InlineResponse20011   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse20011 {\n");
+    sb.append("class ContactResponse {\n");
     
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
