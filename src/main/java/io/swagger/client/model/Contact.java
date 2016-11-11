@@ -25,6 +25,8 @@
 
 package io.swagger.client.model;
 
+import java.beans.Beans;
+import java.util.Map;
 import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
@@ -53,6 +55,9 @@ public class Contact   {
 
   @SerializedName("birthday")
   private String birthday = null;
+
+  @SerializedName("customFields")
+  private Map<String, String> customFields = null;
 
   public Contact encryptedTeamId(String encryptedTeamId) {
     this.encryptedTeamId = encryptedTeamId;
@@ -149,10 +154,10 @@ public class Contact   {
     return this;
   }
 
-   /**
+  /**
    * Get birthday
    * @return birthday
-  **/
+   **/
   @ApiModelProperty(example = "null", value = "")
   public String getBirthday() {
     return birthday;
@@ -160,6 +165,24 @@ public class Contact   {
 
   public void setBirthday(String birthday) {
     this.birthday = birthday;
+  }
+
+  public Contact customFields(Map<String, String> customFields) {
+    this.customFields = customFields;
+    return this;
+  }
+
+  /**
+   * Get customFields
+   * @return customFields
+   **/
+  @ApiModelProperty(example = "null", value = "")
+  public Map<String, String> getCustomFields() {
+    return customFields;
+  }
+
+  public void setCustomFields(Map<String, String> customFields) {
+    this.customFields = customFields;
   }
 
 
@@ -177,12 +200,13 @@ public class Contact   {
         Objects.equals(this.lastName, contact.lastName) &&
         Objects.equals(this.email, contact.email) &&
         Objects.equals(this.company, contact.company) &&
-        Objects.equals(this.birthday, contact.birthday);
+        Objects.equals(this.birthday, contact.birthday) &&
+        Objects.equals(this.customFields, contact.customFields);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(encryptedTeamId, firstName, lastName, email, company, birthday);
+    return Objects.hash(encryptedTeamId, firstName, lastName, email, company, birthday, customFields);
   }
 
   @Override
@@ -196,6 +220,7 @@ public class Contact   {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    company: ").append(toIndentedString(company)).append("\n");
     sb.append("    birthday: ").append(toIndentedString(birthday)).append("\n");
+    sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
     sb.append("}");
     return sb.toString();
   }
