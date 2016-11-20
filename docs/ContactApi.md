@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="contactIdentifyPost"></a>
 # **contactIdentifyPost**
-> ContactResponse contactIdentifyPost(apiKey, teamId, body)
+> ContactResponse contactIdentifyPost(apiKey, teamId, contactDetails)
 
 Identify a contact as user
 
@@ -26,9 +26,9 @@ Identify a contact as user
 ContactApi apiInstance = new ContactApi();
 String apiKey = "apiKey_example"; // String | 
 String teamId = "teamId_example"; // String | 
-Contact body = new Contact(); // Contact | Contact details
+ContactRequest contactDetails = new ContactRequest(); // ContactRequest | Contact details
 try {
-    ContactResponse result = apiInstance.contactIdentifyPost(apiKey, teamId, body);
+    ContactResponse result = apiInstance.contactIdentifyPost(apiKey, teamId, contactDetails);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ContactApi#contactIdentifyPost");
@@ -42,7 +42,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **apiKey** | **String**|  |
  **teamId** | **String**|  |
- **body** | [**Contact**](Contact.md)| Contact details |
+ **contactDetails** | [**ContactRequest**](ContactRequest.md)| Contact details |
 
 ### Return type
 
@@ -59,7 +59,7 @@ No authorization required
 
 <a name="contactTrackPost"></a>
 # **contactTrackPost**
-> TrackResponse contactTrackPost(apiKey, teamId, contactId, tag)
+> TrackResponse contactTrackPost(apiKey, teamId, email, tag)
 
 Add tracking info using tags to a contact
 
@@ -75,10 +75,10 @@ Add tracking info using tags to a contact
 ContactApi apiInstance = new ContactApi();
 String apiKey = "apiKey_example"; // String | 
 String teamId = "teamId_example"; // String | 
-String contactId = "contactId_example"; // String | 
+String email = "email_example"; // String | 
 String tag = "tag_example"; // String | 
 try {
-    TrackResponse result = apiInstance.contactTrackPost(apiKey, teamId, contactId, tag);
+    TrackResponse result = apiInstance.contactTrackPost(apiKey, teamId, email, tag);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ContactApi#contactTrackPost");
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **apiKey** | **String**|  |
  **teamId** | **String**|  |
- **contactId** | **String**|  |
+ **email** | **String**|  |
  **tag** | **String**|  |
 
 ### Return type

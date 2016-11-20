@@ -1,6 +1,6 @@
-/**
- * SendX API
- * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - Add new contacts or update them   - Adding/updating custom fields to each contact on the fly   - Add tracking information by adding tags to contacts  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
+/*
+ * SendX REST API
+ * **NOTE:** All API calls contain 2 parameters - 'api_key' and 'team_id'. These can be inferred from your settings page 'https://app.sendx.io/setting' under the sections 'Api Key' and 'Team Id' respectively.  SendX REST API has two methods:    * Identify   * Track    ## Identify API Method    Identify API Method is used to attach data to a visitor. If a contact is not yet created then we will create the contact. In case contact already exists then we update it.    **Example Request:**       ```json      {         email: \"john.doe@gmail.com\",         firstName: \"John\",         lastName: \"Doe\",         birthday: \"1989-03-03\",         customFields: {           \"Designation\": \"Software Engineer\",           \"Age\": \"27\",           \"Experience\": \"5\"         },         tags: [\"Developer\", \"API Team\"],      }   ```         Note that tags are an array of strings. In case they don't exist previously then API will create them and associate them with the contact.      Similarly if a custom field doesn't exist then it is first created and then associated with the contact along-with the corresponding value. In case custom field exists already then we simply update the value of it for the aforementioned contact.      We don't delete any of the properties based on identify call. What this means is that if for the same contact you did two API calls like:         **API Call A**        ```json      {         email: \"john.doe@gmail.com\",         firstName: \"John\",         birthday: \"1989-03-03\",         customFields: {           \"Designation\": \"Software Engineer\"         },         tags: [\"Developer\"],      }   ```         **API Call B**       ```json      {         email: \"john.doe@gmail.com\",         customFields: {           \"Age\": \"29\"         },         tags: [\"API Team\"],      }   ```         Then the final contact will have firstName as **John**, birthday as **1989-03-03** present. Also both tags **Developer** and **API Team** shall be present along with custom fields **Designation** and **Age**.         **Properties:**      * **firstName**: type string   * **lastName**: type string   * **email**: type string     * **company**: type string     * **birthday**: type string with format **YYYY-MM-DD** eg: 2016-11-21     * **customFields**: type map[string]string      * **tags**: type array of string          **Response:**       ```json      {         \"status\": \"200\",         \"message\": \"OK\",         \"data\": {           \"encryptedTeamId\": \"CLdh9Ig5GLIN1u8gTRvoja\",           \"encryptedId\": \"c9QF63nrBenCaAXe660byz\",           \"tags\": [             \"API Team\",             \"Tech\"           ],           \"firstName\": \"John\",           \"lastName\": \"Doe\",           \"email\": \"john.doe@gmail.com\",           \"company\": \"\",           \"birthday\": \"1989-03-03\",           \"customFields\": {             \"Age\": \"29\",             \"Designation\": \"Software Engineer\"           }           }        }   ```         ## Track API Method         Track API Method is used to associate **tags** with a contact. You can have automation rules based on tag addition and they will get executed. For eg:      * **On user registration** tag start onboarding drip for him / her.   * **Account Upgrade** tag start add user to paid user list and start account expansion drip.       **Response:**       ```json      {         \"status\": \"200\",         \"message\": \"OK\",         \"data\": \"success\"      }   ``` 
  *
  * OpenAPI spec version: v1
  * 
@@ -25,21 +25,24 @@
 
 package io.swagger.client.model;
 
-import java.beans.Beans;
 import java.util.Map;
 import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Contact
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-11-02T08:10:29.251Z")
-public class Contact   {
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-11-20T16:21:28.898Z")
+public class Contact {
   @SerializedName("encryptedTeamId")
   private String encryptedTeamId = null;
+
+  @SerializedName("encryptedId")
+  private String encryptedId = null;
 
   @SerializedName("firstName")
   private String firstName = null;
@@ -55,6 +58,9 @@ public class Contact   {
 
   @SerializedName("birthday")
   private String birthday = null;
+
+  @SerializedName("tags")
+  private List<String> tags = new ArrayList<String>();
 
   @SerializedName("customFields")
   private Map<String, String> customFields = null;
@@ -75,6 +81,24 @@ public class Contact   {
 
   public void setEncryptedTeamId(String encryptedTeamId) {
     this.encryptedTeamId = encryptedTeamId;
+  }
+
+  public Contact encryptedId(String encryptedId) {
+    this.encryptedId = encryptedId;
+    return this;
+  }
+
+   /**
+   * Get encryptedId
+   * @return encryptedId
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public String getEncryptedId() {
+    return encryptedId;
+  }
+
+  public void setEncryptedId(String encryptedId) {
+    this.encryptedId = encryptedId;
   }
 
   public Contact firstName(String firstName) {
@@ -154,10 +178,10 @@ public class Contact   {
     return this;
   }
 
-  /**
+   /**
    * Get birthday
    * @return birthday
-   **/
+  **/
   @ApiModelProperty(example = "null", value = "")
   public String getBirthday() {
     return birthday;
@@ -167,13 +191,41 @@ public class Contact   {
     this.birthday = birthday;
   }
 
+  public Contact tags(List<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public Contact addTagsItem(String tagsItem) {
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+   /**
+   * Get tags
+   * @return tags
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public List<String> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<String> tags) {
+    this.tags = tags;
+  }
+
   public Contact customFields(Map<String, String> customFields) {
     this.customFields = customFields;
     return this;
   }
 
+  public Contact addCustomField(String key, String value) {
+    this.customFields.put(key, value);
+    return this;
+  }
+
   /**
-   * Get customFields
+   * Get custom Fields
    * @return customFields
    **/
   @ApiModelProperty(example = "null", value = "")
@@ -185,7 +237,6 @@ public class Contact   {
     this.customFields = customFields;
   }
 
-
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -196,17 +247,19 @@ public class Contact   {
     }
     Contact contact = (Contact) o;
     return Objects.equals(this.encryptedTeamId, contact.encryptedTeamId) &&
+        Objects.equals(this.encryptedId, contact.encryptedId) &&
         Objects.equals(this.firstName, contact.firstName) &&
         Objects.equals(this.lastName, contact.lastName) &&
         Objects.equals(this.email, contact.email) &&
         Objects.equals(this.company, contact.company) &&
         Objects.equals(this.birthday, contact.birthday) &&
+        Objects.equals(this.tags, contact.tags) &&
         Objects.equals(this.customFields, contact.customFields);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(encryptedTeamId, firstName, lastName, email, company, birthday, customFields);
+    return Objects.hash(encryptedTeamId, encryptedId, firstName, lastName, email, company, birthday, tags, customFields);
   }
 
   @Override
@@ -215,11 +268,13 @@ public class Contact   {
     sb.append("class Contact {\n");
     
     sb.append("    encryptedTeamId: ").append(toIndentedString(encryptedTeamId)).append("\n");
+    sb.append("    encryptedId: ").append(toIndentedString(encryptedId)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    company: ").append(toIndentedString(company)).append("\n");
     sb.append("    birthday: ").append(toIndentedString(birthday)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
     sb.append("}");
     return sb.toString();

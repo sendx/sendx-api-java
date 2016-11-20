@@ -1,6 +1,6 @@
-/**
- * SendX API
- * SendX is built on the simple tenet that users must have open access to their data. SendX API is the first step in that direction. To cite some examples:   - Add new contacts or update them   - Adding/updating custom fields to each contact on the fly   - Add tracking information by adding tags to contacts  As companies grow big, custom use cases around email marketing also crop up. SendX API ensures that SendX platform is able to satisfy such unforeseen use cases. They may range from building custom reporting dashboard to tagging contacts with custom attributes or triggering emails based on recommendation algorithm.  We do our best to have all our URLs be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer). Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.  Also all API calls besides:   - Subscribe / unsubscribe signup form required **api_key** to be passed as **header**   ### The Envelope Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact: ```json {     \"status\": \"200\",     \"message\": \"OK\",     \"data\"\": [        {          ...        },        .        .        .     ] } ```  #### Status The status key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like: ```json {     \"status\": \"404\" } ```  #### Data The data key is the meat of the response. It may be a list containing single object or multiple objects  #### Message This returns back human readable message. This is specially useful to make sense in case of error scenarios. 
+/*
+ * SendX REST API
+ * **NOTE:** All API calls contain 2 parameters - 'api_key' and 'team_id'. These can be inferred from your settings page 'https://app.sendx.io/setting' under the sections 'Api Key' and 'Team Id' respectively.  SendX REST API has two methods:    * Identify   * Track    ## Identify API Method    Identify API Method is used to attach data to a visitor. If a contact is not yet created then we will create the contact. In case contact already exists then we update it.    **Example Request:**       ```json      {         email: \"john.doe@gmail.com\",         firstName: \"John\",         lastName: \"Doe\",         birthday: \"1989-03-03\",         customFields: {           \"Designation\": \"Software Engineer\",           \"Age\": \"27\",           \"Experience\": \"5\"         },         tags: [\"Developer\", \"API Team\"],      }   ```         Note that tags are an array of strings. In case they don't exist previously then API will create them and associate them with the contact.      Similarly if a custom field doesn't exist then it is first created and then associated with the contact along-with the corresponding value. In case custom field exists already then we simply update the value of it for the aforementioned contact.      We don't delete any of the properties based on identify call. What this means is that if for the same contact you did two API calls like:         **API Call A**        ```json      {         email: \"john.doe@gmail.com\",         firstName: \"John\",         birthday: \"1989-03-03\",         customFields: {           \"Designation\": \"Software Engineer\"         },         tags: [\"Developer\"],      }   ```         **API Call B**       ```json      {         email: \"john.doe@gmail.com\",         customFields: {           \"Age\": \"29\"         },         tags: [\"API Team\"],      }   ```         Then the final contact will have firstName as **John**, birthday as **1989-03-03** present. Also both tags **Developer** and **API Team** shall be present along with custom fields **Designation** and **Age**.         **Properties:**      * **firstName**: type string   * **lastName**: type string   * **email**: type string     * **company**: type string     * **birthday**: type string with format **YYYY-MM-DD** eg: 2016-11-21     * **customFields**: type map[string]string      * **tags**: type array of string          **Response:**       ```json      {         \"status\": \"200\",         \"message\": \"OK\",         \"data\": {           \"encryptedTeamId\": \"CLdh9Ig5GLIN1u8gTRvoja\",           \"encryptedId\": \"c9QF63nrBenCaAXe660byz\",           \"tags\": [             \"API Team\",             \"Tech\"           ],           \"firstName\": \"John\",           \"lastName\": \"Doe\",           \"email\": \"john.doe@gmail.com\",           \"company\": \"\",           \"birthday\": \"1989-03-03\",           \"customFields\": {             \"Age\": \"29\",             \"Designation\": \"Software Engineer\"           }           }        }   ```         ## Track API Method         Track API Method is used to associate **tags** with a contact. You can have automation rules based on tag addition and they will get executed. For eg:      * **On user registration** tag start onboarding drip for him / her.   * **Account Upgrade** tag start add user to paid user list and start account expansion drip.       **Response:**       ```json      {         \"status\": \"200\",         \"message\": \"OK\",         \"data\": \"success\"      }   ``` 
  *
  * OpenAPI spec version: v1
  * 
@@ -38,8 +38,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
+import io.swagger.client.model.ContactRequest;
 import io.swagger.client.model.ContactResponse;
-import io.swagger.client.model.Contact;
 import io.swagger.client.model.TrackResponse;
 
 import java.lang.reflect.Type;
@@ -68,8 +68,8 @@ public class ContactApi {
     }
 
     /* Build call for contactIdentifyPost */
-    private com.squareup.okhttp.Call contactIdentifyPostCall(String apiKey, String teamId, Contact body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = body;
+    private com.squareup.okhttp.Call contactIdentifyPostCall(String apiKey, String teamId, ContactRequest contactDetails, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = contactDetails;
         
         // verify the required parameter 'apiKey' is set
         if (apiKey == null) {
@@ -81,9 +81,9 @@ public class ContactApi {
             throw new ApiException("Missing the required parameter 'teamId' when calling contactIdentifyPost(Async)");
         }
         
-        // verify the required parameter 'body' is set
-        if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling contactIdentifyPost(Async)");
+        // verify the required parameter 'contactDetails' is set
+        if (contactDetails == null) {
+            throw new ApiException("Missing the required parameter 'contactDetails' when calling contactIdentifyPost(Async)");
         }
         
 
@@ -92,7 +92,7 @@ public class ContactApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         if (teamId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPairs("", "teamId", teamId));
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "team_id", teamId));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (apiKey != null)
@@ -133,12 +133,12 @@ public class ContactApi {
      * 
      * @param apiKey  (required)
      * @param teamId  (required)
-     * @param body Contact details (required)
+     * @param contactDetails Contact details (required)
      * @return ContactResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ContactResponse contactIdentifyPost(String apiKey, String teamId, Contact body) throws ApiException {
-        ApiResponse<ContactResponse> resp = contactIdentifyPostWithHttpInfo(apiKey, teamId, body);
+    public ContactResponse contactIdentifyPost(String apiKey, String teamId, ContactRequest contactDetails) throws ApiException {
+        ApiResponse<ContactResponse> resp = contactIdentifyPostWithHttpInfo(apiKey, teamId, contactDetails);
         return resp.getData();
     }
 
@@ -147,12 +147,12 @@ public class ContactApi {
      * 
      * @param apiKey  (required)
      * @param teamId  (required)
-     * @param body Contact details (required)
+     * @param contactDetails Contact details (required)
      * @return ApiResponse&lt;ContactResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ContactResponse> contactIdentifyPostWithHttpInfo(String apiKey, String teamId, Contact body) throws ApiException {
-        com.squareup.okhttp.Call call = contactIdentifyPostCall(apiKey, teamId, body, null, null);
+    public ApiResponse<ContactResponse> contactIdentifyPostWithHttpInfo(String apiKey, String teamId, ContactRequest contactDetails) throws ApiException {
+        com.squareup.okhttp.Call call = contactIdentifyPostCall(apiKey, teamId, contactDetails, null, null);
         Type localVarReturnType = new TypeToken<ContactResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -162,12 +162,12 @@ public class ContactApi {
      * 
      * @param apiKey  (required)
      * @param teamId  (required)
-     * @param body Contact details (required)
+     * @param contactDetails Contact details (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call contactIdentifyPostAsync(String apiKey, String teamId, Contact body, final ApiCallback<ContactResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call contactIdentifyPostAsync(String apiKey, String teamId, ContactRequest contactDetails, final ApiCallback<ContactResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -188,13 +188,13 @@ public class ContactApi {
             };
         }
 
-        com.squareup.okhttp.Call call = contactIdentifyPostCall(apiKey, teamId, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = contactIdentifyPostCall(apiKey, teamId, contactDetails, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ContactResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /* Build call for contactTrackPost */
-    private com.squareup.okhttp.Call contactTrackPostCall(String apiKey, String teamId, String contactId, String tag, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call contactTrackPostCall(String apiKey, String teamId, String email, String tag, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // verify the required parameter 'apiKey' is set
@@ -207,9 +207,9 @@ public class ContactApi {
             throw new ApiException("Missing the required parameter 'teamId' when calling contactTrackPost(Async)");
         }
         
-        // verify the required parameter 'contactId' is set
-        if (contactId == null) {
-            throw new ApiException("Missing the required parameter 'contactId' when calling contactTrackPost(Async)");
+        // verify the required parameter 'email' is set
+        if (email == null) {
+            throw new ApiException("Missing the required parameter 'email' when calling contactTrackPost(Async)");
         }
         
         // verify the required parameter 'tag' is set
@@ -223,9 +223,9 @@ public class ContactApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         if (teamId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPairs("", "teamId", teamId));
-        if (contactId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPairs("", "contactId", contactId));
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "team_id", teamId));
+        if (email != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "email", email));
         if (tag != null)
         localVarQueryParams.addAll(apiClient.parameterToPairs("", "tag", tag));
 
@@ -268,13 +268,13 @@ public class ContactApi {
      * 
      * @param apiKey  (required)
      * @param teamId  (required)
-     * @param contactId  (required)
+     * @param email  (required)
      * @param tag  (required)
      * @return TrackResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public TrackResponse contactTrackPost(String apiKey, String teamId, String contactId, String tag) throws ApiException {
-        ApiResponse<TrackResponse> resp = contactTrackPostWithHttpInfo(apiKey, teamId, contactId, tag);
+    public TrackResponse contactTrackPost(String apiKey, String teamId, String email, String tag) throws ApiException {
+        ApiResponse<TrackResponse> resp = contactTrackPostWithHttpInfo(apiKey, teamId, email, tag);
         return resp.getData();
     }
 
@@ -283,13 +283,13 @@ public class ContactApi {
      * 
      * @param apiKey  (required)
      * @param teamId  (required)
-     * @param contactId  (required)
+     * @param email  (required)
      * @param tag  (required)
      * @return ApiResponse&lt;TrackResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TrackResponse> contactTrackPostWithHttpInfo(String apiKey, String teamId, String contactId, String tag) throws ApiException {
-        com.squareup.okhttp.Call call = contactTrackPostCall(apiKey, teamId, contactId, tag, null, null);
+    public ApiResponse<TrackResponse> contactTrackPostWithHttpInfo(String apiKey, String teamId, String email, String tag) throws ApiException {
+        com.squareup.okhttp.Call call = contactTrackPostCall(apiKey, teamId, email, tag, null, null);
         Type localVarReturnType = new TypeToken<TrackResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -299,13 +299,13 @@ public class ContactApi {
      * 
      * @param apiKey  (required)
      * @param teamId  (required)
-     * @param contactId  (required)
+     * @param email  (required)
      * @param tag  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call contactTrackPostAsync(String apiKey, String teamId, String contactId, String tag, final ApiCallback<TrackResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call contactTrackPostAsync(String apiKey, String teamId, String email, String tag, final ApiCallback<TrackResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -326,7 +326,7 @@ public class ContactApi {
             };
         }
 
-        com.squareup.okhttp.Call call = contactTrackPostCall(apiKey, teamId, contactId, tag, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = contactTrackPostCall(apiKey, teamId, email, tag, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TrackResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

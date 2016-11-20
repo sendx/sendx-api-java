@@ -25,58 +25,175 @@
 
 package io.swagger.client.model;
 
+import java.util.Map;
 import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * TrackResponse
+ * ContactRequest
  */
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-11-20T16:21:28.898Z")
-public class TrackResponse {
-  @SerializedName("status")
-  private String status = null;
+public class ContactRequest {
+  @SerializedName("firstName")
+  private String firstName = null;
 
-  @SerializedName("message")
-  private String message = null;
+  @SerializedName("lastName")
+  private String lastName = null;
 
-  public TrackResponse status(String status) {
-    this.status = status;
+  @SerializedName("email")
+  private String email = null;
+
+  @SerializedName("company")
+  private String company = null;
+
+  @SerializedName("birthday")
+  private String birthday = null;
+
+  @SerializedName("tags")
+  private List<String> tags = new ArrayList<String>();
+
+  @SerializedName("customFields")
+  private Map<String, String> customFields = null;
+
+  public ContactRequest firstName(String firstName) {
+    this.firstName = firstName;
     return this;
   }
 
    /**
-   * Get status
-   * @return status
+   * Get firstName
+   * @return firstName
   **/
   @ApiModelProperty(example = "null", value = "")
-  public String getStatus() {
-    return status;
+  public String getFirstName() {
+    return firstName;
   }
 
-  public void setStatus(String status) {
-    this.status = status;
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
   }
 
-  public TrackResponse message(String message) {
-    this.message = message;
+  public ContactRequest lastName(String lastName) {
+    this.lastName = lastName;
     return this;
   }
 
    /**
-   * Get message
-   * @return message
+   * Get lastName
+   * @return lastName
   **/
   @ApiModelProperty(example = "null", value = "")
-  public String getMessage() {
-    return message;
+  public String getLastName() {
+    return lastName;
   }
 
-  public void setMessage(String message) {
-    this.message = message;
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
   }
 
+  public ContactRequest email(String email) {
+    this.email = email;
+    return this;
+  }
+
+   /**
+   * Get email
+   * @return email
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public ContactRequest company(String company) {
+    this.company = company;
+    return this;
+  }
+
+   /**
+   * Get company
+   * @return company
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public String getCompany() {
+    return company;
+  }
+
+  public void setCompany(String company) {
+    this.company = company;
+  }
+
+  public ContactRequest birthday(String birthday) {
+    this.birthday = birthday;
+    return this;
+  }
+
+   /**
+   * Get birthday
+   * @return birthday
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public String getBirthday() {
+    return birthday;
+  }
+
+  public void setBirthday(String birthday) {
+    this.birthday = birthday;
+  }
+
+  public ContactRequest tags(List<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public ContactRequest addTagsItem(String tagsItem) {
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+   /**
+   * Get tags
+   * @return tags
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public List<String> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<String> tags) {
+    this.tags = tags;
+  }
+
+  public ContactRequest customFields(Map<String, String> customFields) {
+    this.customFields = customFields;
+    return this;
+  }
+
+  public ContactRequest addCustomField(String key, String value) {
+    this.customFields.put(key, value);
+    return this;
+  }
+
+  /**
+   * Get custom Fields
+   * @return customFields
+   **/
+  @ApiModelProperty(example = "null", value = "")
+  public Map<String, String> getCustomFields() {
+    return customFields;
+  }
+
+  public void setCustomFields(Map<String, String> customFields) {
+    this.customFields = customFields;
+  }
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -86,24 +203,34 @@ public class TrackResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TrackResponse trackResponse = (TrackResponse) o;
-    return Objects.equals(this.status, trackResponse.status) &&
-        Objects.equals(this.message, trackResponse.message);
+    ContactRequest contactRequest = (ContactRequest) o;
+    return Objects.equals(this.firstName, contactRequest.firstName) &&
+        Objects.equals(this.lastName, contactRequest.lastName) &&
+        Objects.equals(this.email, contactRequest.email) &&
+        Objects.equals(this.company, contactRequest.company) &&
+        Objects.equals(this.birthday, contactRequest.birthday) &&
+        Objects.equals(this.tags, contactRequest.tags) &&
+        Objects.equals(this.customFields, contactRequest.customFields);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, message);
+    return Objects.hash(firstName, lastName, email, company, birthday, tags, customFields);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TrackResponse {\n");
+    sb.append("class ContactRequest {\n");
     
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
+    sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    company: ").append(toIndentedString(company)).append("\n");
+    sb.append("    birthday: ").append(toIndentedString(birthday)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -118,6 +245,4 @@ public class TrackResponse {
     }
     return o.toString().replace("\n", "\n    ");
   }
-  
 }
-

@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>io.swagger</groupId>
     <artifactId>swagger-java-client</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -73,9 +73,9 @@ public class ContactApiExample {
         ContactApi apiInstance = new ContactApi();
         String apiKey = "apiKey_example"; // String | 
         String teamId = "teamId_example"; // String | 
-        Contact body = new Contact(); // Contact | Contact details
+        ContactRequest contactDetails = new ContactRequest(); // ContactRequest | Contact details
         try {
-            ContactResponse result = apiInstance.contactIdentifyPost(apiKey, teamId, body);
+            ContactResponse result = apiInstance.contactIdentifyPost(apiKey, teamId, contactDetails);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactApi#contactIdentifyPost");
@@ -99,6 +99,7 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [Contact](docs/Contact.md)
+ - [ContactRequest](docs/ContactRequest.md)
  - [ContactResponse](docs/ContactResponse.md)
  - [TrackResponse](docs/TrackResponse.md)
 
@@ -110,7 +111,7 @@ Authentication schemes defined for the API:
 
 ## Recommendation
 
-It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issue.
+It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issues.
 
 ## Author
 
