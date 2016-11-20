@@ -25,18 +25,19 @@
 
 package io.swagger.client.model;
 
-import java.util.Map;
 import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * ContactRequest
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-11-20T16:21:28.898Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-11-20T20:31:59.507Z")
 public class ContactRequest {
   @SerializedName("firstName")
   private String firstName = null;
@@ -57,7 +58,7 @@ public class ContactRequest {
   private List<String> tags = new ArrayList<String>();
 
   @SerializedName("customFields")
-  private Map<String, String> customFields = null;
+  private Map<String, String> customFields = new HashMap<String, String>();
 
   public ContactRequest firstName(String firstName) {
     this.firstName = firstName;
@@ -104,7 +105,7 @@ public class ContactRequest {
    * Get email
    * @return email
   **/
-  @ApiModelProperty(example = "null", value = "")
+  @ApiModelProperty(example = "null", required = true, value = "")
   public String getEmail() {
     return email;
   }
@@ -177,15 +178,15 @@ public class ContactRequest {
     return this;
   }
 
-  public ContactRequest addCustomField(String key, String value) {
-    this.customFields.put(key, value);
+  public ContactRequest putCustomFieldsItem(String key, String customFieldsItem) {
+    this.customFields.put(key, customFieldsItem);
     return this;
   }
 
-  /**
-   * Get custom Fields
+   /**
+   * Get customFields
    * @return customFields
-   **/
+  **/
   @ApiModelProperty(example = "null", value = "")
   public Map<String, String> getCustomFields() {
     return customFields;
@@ -245,4 +246,6 @@ public class ContactRequest {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
 }
+

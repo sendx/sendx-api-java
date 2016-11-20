@@ -6,10 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **firstName** | **String** |  |  [optional]
 **lastName** | **String** |  |  [optional]
-**email** | **String** |  |  [required]
+**email** | **String** |  | 
 **company** | **String** |  |  [optional]
 **birthday** | **String** |  |  [optional]
 **tags** | **List&lt;String&gt;** |  |  [optional]
+**customFields** | **Map&lt;String, String&gt;** |  |  [optional]
 
 
 

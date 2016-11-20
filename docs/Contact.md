@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **company** | **String** |  |  [optional]
 **birthday** | **String** |  |  [optional]
 **tags** | **List&lt;String&gt;** |  |  [optional]
+**customFields** | **Map&lt;String, String&gt;** |  |  [optional]
 
 
 

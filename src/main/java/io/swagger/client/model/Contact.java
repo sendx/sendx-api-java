@@ -25,18 +25,19 @@
 
 package io.swagger.client.model;
 
-import java.util.Map;
 import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Contact
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-11-20T16:21:28.898Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-11-20T20:31:59.507Z")
 public class Contact {
   @SerializedName("encryptedTeamId")
   private String encryptedTeamId = null;
@@ -63,7 +64,7 @@ public class Contact {
   private List<String> tags = new ArrayList<String>();
 
   @SerializedName("customFields")
-  private Map<String, String> customFields = null;
+  private Map<String, String> customFields = new HashMap<String, String>();
 
   public Contact encryptedTeamId(String encryptedTeamId) {
     this.encryptedTeamId = encryptedTeamId;
@@ -219,15 +220,15 @@ public class Contact {
     return this;
   }
 
-  public Contact addCustomField(String key, String value) {
-    this.customFields.put(key, value);
+  public Contact putCustomFieldsItem(String key, String customFieldsItem) {
+    this.customFields.put(key, customFieldsItem);
     return this;
   }
 
-  /**
-   * Get custom Fields
+   /**
+   * Get customFields
    * @return customFields
-   **/
+  **/
   @ApiModelProperty(example = "null", value = "")
   public Map<String, String> getCustomFields() {
     return customFields;
@@ -236,6 +237,7 @@ public class Contact {
   public void setCustomFields(Map<String, String> customFields) {
     this.customFields = customFields;
   }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -261,6 +263,7 @@ public class Contact {
   public int hashCode() {
     return Objects.hash(encryptedTeamId, encryptedId, firstName, lastName, email, company, birthday, tags, customFields);
   }
+
 
   @Override
   public String toString() {
