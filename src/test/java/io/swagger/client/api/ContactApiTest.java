@@ -54,11 +54,15 @@ public class ContactApiTest {
      */
     @Test
     public void contactIdentifyPostTest() throws ApiException {
-        String apiKey = null;
-        String teamId = null;
-        ContactRequest contactDetails = null;
-        // ContactResponse response = api.contactIdentifyPost(apiKey, teamId, contactDetails);
-
+//        String apiKey = "fwZSaKk34MA0xV8VdlCp";
+//        String teamId = "g6WavFfMnXydTU0E8CrLly";
+//        ContactRequest contactDetails = new ContactRequest();
+//        contactDetails.setEmail("john@doe.com");
+//        Map<String, String> map = new HashMap<>();
+//        map.put("hank", "moodieee");
+//        contactDetails.setCustomFields(map);
+//        ContactResponse response = api.contactIdentifyPost(apiKey, teamId, contactDetails);
+//        System.out.println(response);
         // TODO: test validations
     }
     
@@ -72,11 +76,11 @@ public class ContactApiTest {
      */
     @Test
     public void contactTrackPostTest() throws ApiException {
-        String apiKey = null;
-        String teamId = null;
-        String email = null;
-        String tag = null;
-        // TrackResponse response = api.contactTrackPost(apiKey, teamId, email, tag);
+//        String apiKey = "fwZSaKk34MA0xV8VdlCp";
+//        String teamId = "g6WavFfMnXydTU0E8CrLly";
+//        String email = "john@doe.com";
+//        String tag = "This_tag";
+//        TrackResponse response = api.contactTrackPost(apiKey, teamId, email, tag);
 
         // TODO: test validations
     }
