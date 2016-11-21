@@ -1,4 +1,4 @@
-# swagger-java-client
+# SendX Java Client
 
 ## Requirements
 
