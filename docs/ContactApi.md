@@ -1,6 +1,6 @@
 # ContactApi
 
-All URIs are relative to *https://app.sendx.io/api/v1*
+All URIs are relative to *http://app.sendx.io/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -59,7 +59,7 @@ No authorization required
 
 <a name="contactTrackPost"></a>
 # **contactTrackPost**
-> TrackResponse contactTrackPost(apiKey, teamId, email, tag)
+> TrackResponse contactTrackPost(apiKey, teamId, email, trackDetails)
 
 Add tracking info using tags to a contact
 
@@ -76,9 +76,9 @@ ContactApi apiInstance = new ContactApi();
 String apiKey = "apiKey_example"; // String | 
 String teamId = "teamId_example"; // String | 
 String email = "email_example"; // String | 
-String tag = "tag_example"; // String | 
+TrackRequest trackDetails = new TrackRequest(); // TrackRequest | Track Details
 try {
-    TrackResponse result = apiInstance.contactTrackPost(apiKey, teamId, email, tag);
+    TrackResponse result = apiInstance.contactTrackPost(apiKey, teamId, email, trackDetails);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ContactApi#contactTrackPost");
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
  **apiKey** | **String**|  |
  **teamId** | **String**|  |
  **email** | **String**|  |
- **tag** | **String**|  |
+ **trackDetails** | [**TrackRequest**](TrackRequest.md)| Track Details |
 
 ### Return type
 

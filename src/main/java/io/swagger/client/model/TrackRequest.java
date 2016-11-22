@@ -23,45 +23,113 @@
  */
 
 
-package io.swagger.client;
+package io.swagger.client.model;
 
+import java.util.Objects;
+import com.google.gson.annotations.SerializedName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * TrackRequest
+ */
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-11-22T20:04:04.977Z")
-public class StringUtil {
-  /**
-   * Check if the given array contains the given value (with case-insensitive comparison).
-   *
-   * @param array The array
-   * @param value The value to search
-   * @return true if the array contains the value
-   */
-  public static boolean containsIgnoreCase(String[] array, String value) {
-    for (String str : array) {
-      if (value == null && str == null) return true;
-      if (value != null && value.equalsIgnoreCase(str)) return true;
+public class TrackRequest {
+  @SerializedName("addTags")
+  private List<String> addTags = new ArrayList<String>();
+
+  @SerializedName("removeTags")
+  private List<String> removeTags = new ArrayList<String>();
+
+  public TrackRequest addTags(List<String> addTags) {
+    this.addTags = addTags;
+    return this;
+  }
+
+  public TrackRequest addAddTagsItem(String addTagsItem) {
+    this.addTags.add(addTagsItem);
+    return this;
+  }
+
+   /**
+   * Get addTags
+   * @return addTags
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public List<String> getAddTags() {
+    return addTags;
+  }
+
+  public void setAddTags(List<String> addTags) {
+    this.addTags = addTags;
+  }
+
+  public TrackRequest removeTags(List<String> removeTags) {
+    this.removeTags = removeTags;
+    return this;
+  }
+
+  public TrackRequest addRemoveTagsItem(String removeTagsItem) {
+    this.removeTags.add(removeTagsItem);
+    return this;
+  }
+
+   /**
+   * Get removeTags
+   * @return removeTags
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public List<String> getRemoveTags() {
+    return removeTags;
+  }
+
+  public void setRemoveTags(List<String> removeTags) {
+    this.removeTags = removeTags;
+  }
+
+
+  @Override
+  public boolean equals(java.lang.Object o) {
+    if (this == o) {
+      return true;
     }
-    return false;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    TrackRequest trackRequest = (TrackRequest) o;
+    return Objects.equals(this.addTags, trackRequest.addTags) &&
+        Objects.equals(this.removeTags, trackRequest.removeTags);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(addTags, removeTags);
+  }
+
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class TrackRequest {\n");
+    
+    sb.append("    addTags: ").append(toIndentedString(addTags)).append("\n");
+    sb.append("    removeTags: ").append(toIndentedString(removeTags)).append("\n");
+    sb.append("}");
+    return sb.toString();
   }
 
   /**
-   * Join an array of strings with the given separator.
-   * <p>
-   * Note: This might be replaced by utility method from commons-lang or guava someday
-   * if one of those libraries is added as dependency.
-   * </p>
-   *
-   * @param array     The array of strings
-   * @param separator The separator
-   * @return the resulting string
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
    */
-  public static String join(String[] array, String separator) {
-    int len = array.length;
-    if (len == 0) return "";
-
-    StringBuilder out = new StringBuilder();
-    out.append(array[0]);
-    for (int i = 1; i < len; i++) {
-      out.append(separator).append(array[i]);
+  private String toIndentedString(java.lang.Object o) {
+    if (o == null) {
+      return "null";
     }
-    return out.toString();
+    return o.toString().replace("\n", "\n    ");
   }
+  
 }
+
