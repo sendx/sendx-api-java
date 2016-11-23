@@ -55,11 +55,15 @@ public class ContactApiTest {
      */
     @Test
     public void contactIdentifyPostTest() throws ApiException {
-        String apiKey = null;
-        String teamId = null;
-        ContactRequest contactDetails = null;
-        // ContactResponse response = api.contactIdentifyPost(apiKey, teamId, contactDetails);
-
+//        String apiKey = "u9ydadjzuGAtXhmzkdPE";
+//        String teamId = "aBOOUwYl65gyWfx9bjYyAF";
+//        ContactRequest contactDetails = new ContactRequest();
+//        contactDetails.setEmail("john@doe.com");
+//        Map<String, String> map = new HashMap<>();
+//        map.put("hank", "moodieee");
+//        contactDetails.setCustomFields(map);
+//        ContactResponse response = api.contactIdentifyPost(apiKey, teamId, contactDetails);
+//        System.out.println(response);
         // TODO: test validations
     }
     
@@ -73,12 +77,22 @@ public class ContactApiTest {
      */
     @Test
     public void contactTrackPostTest() throws ApiException {
-        String apiKey = null;
-        String teamId = null;
-        String email = null;
-        TrackRequest trackDetails = null;
-        // TrackResponse response = api.contactTrackPost(apiKey, teamId, email, trackDetails);
-
+//        String apiKey = "u9ydadjzuGAtXhmzkdPE";
+//        String teamId = "aBOOUwYl65gyWfx9bjYyAF";
+//        String email = "john@doe.com";
+//        TrackRequest req = new TrackRequest();
+//        List<String> addTags = new ArrayList<>();
+//        addTags.add("tag1");
+//
+//        List<String> removeTags = new ArrayList<>();
+//        removeTags.add("This_tag");
+//
+//
+//        req.setAddTags(addTags);
+//        req.setRemoveTags(removeTags);
+//
+//        TrackResponse response = api.contactTrackPost(apiKey, teamId, email, req);
+//        System.out.println(response);
         // TODO: test validations
     }
     

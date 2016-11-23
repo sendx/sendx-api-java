@@ -223,7 +223,7 @@ public class ContactApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://app.sendx.io/api/v1*
+All URIs are relative to *https://app.sendx.io/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
